@@ -293,6 +293,7 @@ Salva em localStorage para persistência
 ## 🛠️ Tecnologias Utilizadas
 
 ### Backend
+
 - **Python 3.11+**
 - **FastAPI**: Framework web assíncrono
 - **Uvicorn**: Servidor ASGI de alta performance
@@ -301,12 +302,14 @@ Salva em localStorage para persistência
 - **Pydantic**: Validação de dados
 
 ### Frontend
+
 - **HTML5**: Estrutura semântica
 - **CSS3**: Grid, Flexbox, variáveis CSS
 - **JavaScript ES6+**: Async/await, fetch, classes
 - **LocalStorage API**: Persistência de dados
 
 ### Infraestrutura
+
 - **Sistema de arquivos local**: Persistência simples
 - **Logging nativo do Python**: Debug e monitoramento
 
