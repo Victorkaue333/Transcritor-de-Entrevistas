@@ -334,18 +334,6 @@ http://127.0.0.1:8000
 
 ---
 
-## 🎯 Possíveis melhorias / Roadmap
-
-### Curto prazo
-
-- ✅ ~~Interface web interativa~~ (implementado)
-- ✅ ~~Botões de download (TXT, JSON, SRT)~~ (implementado)
-- ✅ ~~Identificação opcional de speakers~~ (implementado)
-- [ ] Suporte a múltiplos idiomas via dropdown
-- [ ] Indicador de progresso durante transcrição
-- [ ] Histórico de transcrições anteriores
-
-
 ## 👨‍💻 Autor
 
 **Victor Alves** - [GitHub](https://github.com/Victorkaue333)
