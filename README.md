@@ -144,4 +144,3 @@ A etnia do nosso convidado é a Pancará...
 - exportação em DOCX
 - limpeza automática de repetições e ruídos
 - sumarização automática por temas
-
