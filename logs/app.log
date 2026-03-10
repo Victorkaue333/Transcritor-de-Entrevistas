@@ -56,3 +56,14 @@ FileNotFoundError: Arquivo não encontrado: input\entrevista.mp4
 2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] ✅ SRT gerado: 475b526e.srt
 2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] Arquivos de download prontos (TXT, JSON, SRT)
 2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] ✅ Processamento completo finalizado com sucesso!
+2026-03-10 15:51:37 | INFO | whisper_transcriber | [181499ce] Iniciando salvamento de arquivo: entrevista.mp4
+2026-03-10 15:51:37 | INFO | whisper_transcriber | [181499ce] Arquivo salvo em: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\input\181499ce_entrevista.mp4
+2026-03-10 15:51:38 | INFO | whisper_transcriber | [181499ce] Cópia criada para frontend: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\frontend\media\181499ce_entrevista.mp4
+2026-03-10 15:51:38 | INFO | whisper_transcriber | [181499ce] Iniciando processamento completo
+2026-03-10 15:51:38 | INFO | whisper_transcriber | [181499ce] Diarization: Desabilitado
+2026-03-10 15:51:38 | INFO | whisper_transcriber | [181499ce] Fase 1: Transcrição com Whisper
+2026-03-10 15:51:38 | INFO | whisper_transcriber | [181499ce] Carregando modelo Whisper: medium
+2026-03-10 15:51:38 | INFO | whisper_transcriber | [181499ce] Arquivo de entrada: 181499ce_entrevista.mp4
+2026-03-10 15:51:38 | INFO | whisper_transcriber | [181499ce] Idioma: Português (pt)
+2026-03-10 15:51:38 | INFO | whisper_transcriber | Carregando modelo Whisper: medium
+2026-03-10 15:51:47 | INFO | whisper_transcriber | Iniciando transcrição do arquivo: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\input\181499ce_entrevista.mp4

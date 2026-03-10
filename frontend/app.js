@@ -16,6 +16,41 @@ const clearLogsBtn = document.getElementById("clearLogsBtn");
 let segmentsCache = [];
 let currentJobId = null;
 
+// Funções de persistência
+function saveToLocalStorage() {
+    if (currentJobId && segmentsCache.length > 0) {
+        const data = {
+            jobId: currentJobId,
+            segments: segmentsCache,
+            videoUrl: videoPlayer.src
+        };
+        localStorage.setItem('whisper_transcription', JSON.stringify(data));
+        addLog("info", "Dados salvos automaticamente");
+    }
+}
+
+function loadFromLocalStorage() {
+    const saved = localStorage.getItem('whisper_transcription');
+    if (saved) {
+        try {
+            const data = JSON.parse(saved);
+            currentJobId = data.jobId;
+            segmentsCache = data.segments || [];
+            
+            if (data.videoUrl) {
+                videoPlayer.src = data.videoUrl;
+                renderSegments(segmentsCache);
+                downloadButtons.style.display = "flex";
+                statusText.textContent = `Transcrição carregada. ${segmentsCache.length} trechos disponíveis.`;
+                addLog("success", `Transcrição anterior restaurada (${segmentsCache.length} segmentos)`);
+            }
+        } catch (error) {
+            console.error("Erro ao carregar dados salvos:", error);
+            localStorage.removeItem('whisper_transcription');
+        }
+    }
+}
+
 // Sistema de Logs
 function addLog(level, message) {
     const now = new Date();
@@ -144,6 +179,9 @@ function formatTime(seconds) {
         downloadButtons.style.display = "flex";
         statusText.textContent = `Transcrição concluída. ${segmentsCache.length} trechos carregados.`;
         addLog("info", "Arquivos de download prontos (TXT, JSON, SRT)");
+        
+        // Salva os dados no localStorage
+        saveToLocalStorage();
     } catch (error) {
         statusText.textContent = `Erro: ${error.message}`;
         transcriptList.innerHTML = `<div class="empty-state">Falha ao carregar transcrição.</div>`;
@@ -212,5 +250,10 @@ videoPlayer.addEventListener("timeupdate", () => {
     }
 });
 
+// Inicialização: carrega dados salvos (se existirem)
+loadFromLocalStorage();
+
 // Log inicial
-addLog("info", "Sistema iniciado. Aguardando upload de arquivo...");
+if (!currentJobId) {
+    addLog("info", "Sistema iniciado. Aguardando upload de arquivo...");
+}
