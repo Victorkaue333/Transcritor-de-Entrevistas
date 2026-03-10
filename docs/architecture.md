@@ -221,6 +221,7 @@ Salva em localStorage para persistência
 | `app.js` | Lógica de upload, sincronização vídeo/texto, localStorage |
 
 **Tecnologias:**
+
 - HTML5 Video API
 - Fetch API para requisições HTTP
 - localStorage para persistência entre reloads
@@ -229,13 +230,16 @@ Salva em localStorage para persistência
 ### Backend (`src/`)
 
 #### API Layer
+
 - **`api.py`**: Endpoints FastAPI, middleware CORS, static files
 
 #### Business Logic
+
 - **`services/transcript_service.py`**: Orquestrador principal de processamento
 - **`transcriber.py`**: Wrapper do Whisper com configurações customizadas
 
 #### Utilities
+
 - **`config.py`**: Constantes globais (diretórios, modelo padrão)
 - **`logger.py`**: Sistema de logs com timestamps
 - **`metadata.py`**: Verificação de formatos de arquivo
