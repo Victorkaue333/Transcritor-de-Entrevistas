@@ -29,24 +29,32 @@ A aplicação recebe um arquivo de áudio ou vídeo, processa o conteúdo com o 
 ```bash
 whisper-interview-transcriber/
 │
+├── docs/
 ├── input/
-│   └── entrevista.mp4
-│
+├── logs/
 ├── output/
-│   ├── transcript.txt
-│   ├── transcript.json
-│   └── transcript.srt
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── app.js
 │
 ├── src/
+│   ├── __init__.py
+│   ├── api.py
+│   ├── cleaner.py
+│   ├── cli.py
 │   ├── config.py
-│   ├── transcriber.py
-│   ├── formatter.py
 │   ├── exporter.py
-│   └── utils.py
+│   ├── formatter.py
+│   ├── logger.py
+│   ├── metadata.py
+│   ├── transcriber.py
+│   ├── utils.py
+│   └── services/
+│       └── transcript_service.py
 │
 ├── main.py
 ├── requirements.txt
-├── .gitignore
 └── README.md
 ```
 
