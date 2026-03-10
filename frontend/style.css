@@ -257,6 +257,8 @@
         max-height: 650px;
         overflow-y: auto;
         padding-right: 6px;
+        padding-left: 22px;
+        position: relative;
         }
 
         .segment {
@@ -274,11 +276,32 @@
         }
 
         .segment.active {
-        border-color: #3b82f6;
-        background: rgba(59, 130, 246, 0.08);
-        box-shadow: 0 0 0 1px #3b82f6 inset, 0 4px 12px rgba(59, 130, 246, 0.15);
-        transform: scale(1.01);
-        transition: all 0.3s ease;
+        border-color: #3b82f6 !important;
+        background: rgba(59, 130, 246, 0.18) !important;
+        box-shadow: 0 0 0 2px #3b82f6 inset, 0 4px 16px rgba(59, 130, 246, 0.3) !important;
+        transform: scale(1.02) !important;
+        transition: all 0.3s ease !important;
+        position: relative;
+        }
+        
+        .segment.active::before {
+        content: "▶";
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #3b82f6;
+        font-size: 16px;
+        }
+        
+        .segment.active .timestamp {
+        color: #60a5fa !important;
+        text-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+        }
+        
+        .segment.active .segment-text {
+        color: #ffffff !important;
+        font-weight: 500;
         }
 
         .segment-header {

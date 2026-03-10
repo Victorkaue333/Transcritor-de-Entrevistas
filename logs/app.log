@@ -67,3 +67,28 @@ FileNotFoundError: Arquivo não encontrado: input\entrevista.mp4
 2026-03-10 15:51:38 | INFO | whisper_transcriber | [181499ce] Idioma: Português (pt)
 2026-03-10 15:51:38 | INFO | whisper_transcriber | Carregando modelo Whisper: medium
 2026-03-10 15:51:47 | INFO | whisper_transcriber | Iniciando transcrição do arquivo: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\input\181499ce_entrevista.mp4
+2026-03-10 15:55:11 | INFO | whisper_transcriber | [a26a0e55] Iniciando salvamento de arquivo: entrevista.mp4
+2026-03-10 15:55:11 | INFO | whisper_transcriber | [a26a0e55] Arquivo salvo em: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\input\a26a0e55_entrevista.mp4
+2026-03-10 15:55:11 | INFO | whisper_transcriber | [a26a0e55] Cópia criada para frontend: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\frontend\media\a26a0e55_entrevista.mp4
+2026-03-10 15:55:11 | INFO | whisper_transcriber | [a26a0e55] Iniciando processamento completo
+2026-03-10 15:55:11 | INFO | whisper_transcriber | [a26a0e55] Diarization: Desabilitado
+2026-03-10 15:55:11 | INFO | whisper_transcriber | [a26a0e55] Fase 1: Transcrição com Whisper
+2026-03-10 15:55:11 | INFO | whisper_transcriber | [a26a0e55] Carregando modelo Whisper: small
+2026-03-10 15:55:11 | INFO | whisper_transcriber | [a26a0e55] Arquivo de entrada: a26a0e55_entrevista.mp4
+2026-03-10 15:55:11 | INFO | whisper_transcriber | [a26a0e55] Idioma: Português (pt)
+2026-03-10 15:55:11 | INFO | whisper_transcriber | Carregando modelo Whisper: small
+2026-03-10 15:55:21 | INFO | whisper_transcriber | Iniciando transcrição do arquivo: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\input\a26a0e55_entrevista.mp4
+2026-03-10 16:09:40 | INFO | whisper_transcriber | Transcrição concluída com sucesso.
+2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] ✅ Transcrição Whisper concluída: 795 segmentos detectados
+2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] Transcrição Whisper concluída
+2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] Fase 3: Normalizando segmentos
+2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] 795 segmentos normalizados
+2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] Fase 4: Salvando resultados
+2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] JSON salvo: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\output\a26a0e55_segments.json
+2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] Fase 5: Gerando arquivos de download
+2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] Gerando arquivo TXT...
+2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] ✅ TXT gerado: a26a0e55.txt
+2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] Gerando arquivo SRT...
+2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] ✅ SRT gerado: a26a0e55.srt
+2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] Arquivos de download prontos (TXT, JSON, SRT)
+2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] ✅ Processamento completo finalizado com sucesso!

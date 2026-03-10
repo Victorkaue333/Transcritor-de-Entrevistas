@@ -15,6 +15,7 @@ const clearLogsBtn = document.getElementById("clearLogsBtn");
 
 let segmentsCache = [];
 let currentJobId = null;
+let lastActiveSegment = null;
 
 // Funções de persistência
 function saveToLocalStorage() {
@@ -108,6 +109,7 @@ function formatTime(seconds) {
         const item = document.createElement("div");
         item.className = "segment";
         item.dataset.start = segment.start;
+        item.dataset.end = segment.end;
         item.dataset.index = index;
 
         item.innerHTML = `
@@ -124,10 +126,14 @@ function formatTime(seconds) {
 
         document.querySelectorAll(".segment").forEach((el) => el.classList.remove("active"));
         item.classList.add("active");
+        lastActiveSegment = item;
         });
 
         transcriptList.appendChild(item);
     });
+    
+    // Reset do último segmento ativo ao re-renderizar
+    lastActiveSegment = null;
     }
 
     uploadBtn.addEventListener("click", async () => {
@@ -222,16 +228,24 @@ videoPlayer.addEventListener("timeupdate", () => {
     const currentTime = videoPlayer.currentTime;
     
     // Encontra o segmento ativo baseado no tempo atual
-    const activeSegmentIndex = segmentsCache.findIndex((segment) => {
-        return currentTime >= segment.start && currentTime <= segment.end;
-    });
+    const allSegments = document.querySelectorAll(".segment");
+    let activeSegment = null;
     
-    if (activeSegmentIndex !== -1) {
+    for (const segment of allSegments) {
+        const start = parseFloat(segment.dataset.start);
+        const end = parseFloat(segment.dataset.end);
+        
+        if (currentTime >= start && currentTime <= end) {
+            activeSegment = segment;
+            break;
+        }
+    }
+    
+    // Só atualiza se mudou o segmento ativo
+    if (activeSegment !== lastActiveSegment) {
         // Remove a classe active de todos os segmentos
         document.querySelectorAll(".segment").forEach((el) => el.classList.remove("active"));
         
-        // Adiciona a classe active ao segmento atual
-        const activeSegment = document.querySelector(`.segment[data-index="${activeSegmentIndex}"]`);
         if (activeSegment) {
             activeSegment.classList.add("active");
             
@@ -247,6 +261,8 @@ videoPlayer.addEventListener("timeupdate", () => {
                 behavior: "smooth"
             });
         }
+        
+        lastActiveSegment = activeSegment;
     }
 });
 
