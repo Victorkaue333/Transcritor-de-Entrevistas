@@ -1,12 +1,8 @@
 # Como Funciona o Sistema?:
 
-## 📖 Visão Geral
-
-O **Whisper Interview Transcriber** transforma vídeos e áudios em transcrições navegáveis usando Inteligência Artificial. Este documento explica o funcionamento detalhado de cada etapa do processo.
-
----
-
 ## 🎬 Fluxo Completo do Usuário
+
+O fluxo do usuário é projetado para ser simples e intuitivo, mesmo para quem não tem experiência técnica. Aqui está o passo a passo:
 
 ```
 1. Usuário acessa a interface web
