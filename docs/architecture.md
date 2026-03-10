@@ -175,6 +175,7 @@ Atualiza segments:
 ### 4️⃣ Geração de Arquivos
 
 A geração de arquivos é feita em três formatos principais:
+
 - **TXT**: Transcrição legível para humanos
 - **SRT**: Legendas para vídeos
 - **JSON**: Dados completos para download O `TranscriptService` utiliza o módulo `exporter.py` para converter os segmentos no formato desejado e salva na pasta `output/`.
