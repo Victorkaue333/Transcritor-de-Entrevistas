@@ -1,9 +1,18 @@
-Arquivo de entrada (mp4/mp3/wav/m4a)
+Fluxo completo:
+Usuário envia vídeo
         ↓
-Whisper faz a transcrição
+FastAPI recebe arquivo
         ↓
-Sistema extrai segmentos com tempo
+Salva em input/
         ↓
-Sistema formata os blocos
+Roda transcrição com Whisper
         ↓
-Exporta em TXT / JSON / SRT
+Gera segmentos em JSON
+        ↓
+Frontend recebe JSON
+        ↓
+Renderiza player + lista
+        ↓
+Usuário clica em um trecho
+        ↓
+Vídeo pula para o timestamp
