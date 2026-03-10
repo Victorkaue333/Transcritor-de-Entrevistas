@@ -137,6 +137,26 @@ A etnia do nosso convidado é a Pancará...
 - o Whisper transcreve muito bem, mas não identifica nomes dos participantes sozinho
 - para identificar "Victor", "Thalysson" e "Francisco", é possível integrar diarização em uma próxima versão
 
+
+## Logs da aplicação
+
+O projeto utiliza a biblioteca nativa `logging` do Python para registrar a execução da aplicação.
+
+Os logs são exibidos no terminal e também salvos em:
+
+```bash
+logs/app.log
+```
+
+Eles registram:
+
+- início da execução
+- arquivo processado
+- modelo do Whisper usado
+- erros
+- arquivos exportados
+
+
 ## Melhorias futuras
 
 - diarização de falantes
