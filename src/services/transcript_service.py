@@ -96,11 +96,11 @@ class TranscriptService:
         try:
             self.logger.info(f"Iniciando transcrição para job_id: {job_id}")
             
-            # Usando modelo base e detecção automática de idioma
-            # Você pode alterar para "small", "medium", "large" conforme necessário
+            # Usando modelo medium (balanceado - alta precisão e tempo razoável)
+            # Opções: "tiny" (rápido) | "base" | "small" | "medium" | "large" (mais preciso)
             result = transcribe_file(
                 file_path=str(input_video_path),
-                model_name="base",
+                model_name="medium",
                 language="pt",
                 logger=self.logger
             )
