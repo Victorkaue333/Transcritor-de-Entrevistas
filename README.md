@@ -186,7 +186,9 @@ whisper-interview-transcriber/
 
 ## 🚀 Como executar o projeto
 
-### Pré-requisitos
+### Pré-requisitos:
+
+Para rodar o projeto localmente, certifique-se de ter:
 
 - **Python 3.11+** instalado
 - **FFmpeg** instalado no sistema
