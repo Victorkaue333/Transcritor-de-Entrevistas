@@ -1,44 +1,72 @@
 from pathlib import Path
+import sys
 
-from src.config import INPUT_FILE, OUTPUT_JSON, OUTPUT_SRT, OUTPUT_TXT
-from src.transcriber import transcribe_file
+from src.cli import parse_args
+from src.cleaner import clean_segments
+from src.config import LOG_DIR, OUTPUT_DIR
+from src.exporter import save_json, save_srt, save_txt
 from src.formatter import (
     format_segments_to_json,
     format_segments_to_srt,
     format_segments_to_txt,
 )
-from src.exporter import save_json, save_srt, save_txt
+from src.logger import setup_logger
+from src.metadata import build_metadata
+from src.transcriber import transcribe_file
 
 
-def validate_input_file(file_path: Path) -> None:
-    if not file_path.exists():
-        raise FileNotFoundError(
-            f"Arquivo de entrada não encontrado: {file_path}"
+def main():
+    args = parse_args()
+    logger = setup_logger(LOG_DIR)
+
+    try:
+        input_file = Path(args.input)
+
+        if not input_file.exists():
+            logger.error("Arquivo não encontrado: %s", input_file)
+            raise FileNotFoundError(f"Arquivo não encontrado: {input_file}")
+
+        logger.info("Execução iniciada")
+        logger.info("Arquivo de entrada: %s", input_file)
+        logger.info("Modelo: %s | Idioma: %s", args.model, args.language)
+
+        result = transcribe_file(
+            file_path=str(input_file),
+            model_name=args.model,
+            language=args.language,
+            logger=logger,
         )
 
+        raw_segments = result.get("segments", [])
+        if not raw_segments:
+            logger.error("Nenhum segmento foi retornado pela transcrição.")
+            raise ValueError("Nenhum segmento foi retornado pela transcrição.")
 
-def main() -> None:
-    print("Iniciando transcrição...")
-    validate_input_file(INPUT_FILE)
+        cleaned_segments = clean_segments(raw_segments)
+        metadata = build_metadata(
+            input_file=str(input_file),
+            model_name=args.model,
+            language=args.language,
+            segments=cleaned_segments,
+        )
 
-    result = transcribe_file(INPUT_FILE)
-    segments = result.get("segments", [])
+        output_txt = OUTPUT_DIR / f"{args.output_name}.txt"
+        output_json = OUTPUT_DIR / f"{args.output_name}.json"
+        output_srt = OUTPUT_DIR / f"{args.output_name}.srt"
 
-    if not segments:
-        raise ValueError("Nenhum segmento foi retornado pela transcrição.")
+        txt_content = format_segments_to_txt(cleaned_segments, metadata)
+        json_content = format_segments_to_json(cleaned_segments, metadata)
+        srt_content = format_segments_to_srt(cleaned_segments)
 
-    txt_content = format_segments_to_txt(segments)
-    json_content = format_segments_to_json(segments)
-    srt_content = format_segments_to_srt(segments)
+        save_txt(txt_content, output_txt, logger=logger)
+        save_json(json_content, output_json, logger=logger)
+        save_srt(srt_content, output_srt, logger=logger)
 
-    save_txt(txt_content, OUTPUT_TXT)
-    save_json(json_content, OUTPUT_JSON)
-    save_srt(srt_content, OUTPUT_SRT)
+        logger.info("Processamento finalizado com sucesso.")
 
-    print("Transcrição finalizada com sucesso.")
-    print(f"TXT salvo em: {OUTPUT_TXT}")
-    print(f"JSON salvo em: {OUTPUT_JSON}")
-    print(f"SRT salvo em: {OUTPUT_SRT}")
+    except Exception as exc:
+        logger.exception("Erro durante a execução: %s", exc)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
