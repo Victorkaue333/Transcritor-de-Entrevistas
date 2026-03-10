@@ -11,6 +11,7 @@ Uma aplicação full-stack que utiliza o modelo Whisper da OpenAI para transcrev
 <!-- Adicione aqui screenshots ou GIF da aplicação -->
 
 **Recursos visuais:**
+
 - Interface com player de vídeo sincronizado
 - Lista de segmentos clicáveis com timestamps
 - Busca em tempo real na transcrição
