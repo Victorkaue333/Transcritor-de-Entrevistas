@@ -378,20 +378,6 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 **Victor Alves** - [GitHub](https://github.com/Victorkaue333)
 
----
-
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para:
-
-1. Fazer fork do projeto
-2. Criar uma branch para sua feature (`git checkout -b feature/NovaFuncionalidade`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/NovaFuncionalidade`)
-5. Abrir um Pull Request
-
----
-
 ## 📧 Contato
 
 Para dúvidas ou sugestões, abra uma [issue](https://github.com/Victorkaue333/whisper-interview-transcriber/issues) no GitHub.
