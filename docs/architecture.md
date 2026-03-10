@@ -132,6 +132,8 @@ Copia para frontend/media/{job_id}{ext}
 
 ### 2️⃣ Transcrição com Whisper
 
+Já com o arquivo salvo, o `TranscriptService` chama o `Transcriber` para processar o áudio. O modelo Whisper é carregado (se ainda não estiver em cache) e o áudio é transcrito, retornando uma lista de segmentos com texto e timestamps.
+
 ```
 [TranscriptService] Chama _run_existing_transcriber()
         ↓
