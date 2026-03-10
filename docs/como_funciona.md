@@ -539,12 +539,6 @@ except Exception as e:
 - ✅ Sem coleta de dados pessoais
 - ⚠️ localStorage exposto no navegador
 
-### Limitações Atuais
-
-- ⚠️ Sem autenticação de usuários
-- ⚠️ Arquivos visíveis para quem tem acesso ao servidor
-- ⚠️ Sem criptografia de arquivos
-
 ---
 
 ## 💡 Dicas de Uso
