@@ -1,87 +1,207 @@
 # Whisper Interview Transcriber
 
-O principal objetivo deste projeto é automatizar a transcrição de entrevistas a partir de arquivos de áudio ou vídeo, gerando uma transcrição completa com timestamps, segmentação por trechos e exportação em múltiplos formatos.
+> Sistema web de transcrição automática de áudio e vídeo com navegação por timestamps, identificação de speakers e exportação em múltiplos formatos.
 
-## Objetivo
+Uma aplicação full-stack que utiliza o modelo Whisper da OpenAI para transcrever entrevistas, reuniões e gravações, oferecendo uma interface interativa para navegação sincronizada entre vídeo e texto transcrito.
 
-Este projeto foi criado para facilitar a transcrição de entrevistas acadêmicas, reuniões e gravações em geral.
+---
 
-A aplicação recebe um arquivo de áudio ou vídeo, processa o conteúdo com o modelo Whisper e gera:
+## 📺 Demonstração
 
-- transcrição completa em texto
-- segmentação por tempo
-- arquivo JSON estruturado
-- arquivo SRT com legendas
+<!-- Adicione aqui screenshots ou GIF da aplicação -->
 
-## Funcionalidades
+**Recursos visuais:**
+- Interface com player de vídeo sincronizado
+- Lista de segmentos clicáveis com timestamps
+- Busca em tempo real na transcrição
+- Botões de download (TXT, JSON, SRT)
+- Checkbox para identificação de speakers
 
-- leitura de arquivos `.mp4`, `.mp3`, `.wav`, `.m4a`
-- transcrição automática em português
-- separação por segmentos com timestamp
-- exportação em:
-  - `.txt`
-  - `.json`
-  - `.srt`
-- organização simples para uso em pesquisa acadêmica
+---
 
-## Estrutura do projeto
+## 🎯 Problema que o projeto resolve
 
-```bash
-whisper-interview-transcriber/
-│
-├── docs/
-├── input/
-├── logs/
-├── output/
-├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   └── app.js
-│
-├── src/
-│   ├── __init__.py
-│   ├── api.py
-│   ├── cleaner.py
-│   ├── cli.py
-│   ├── config.py
-│   ├── exporter.py
-│   ├── formatter.py
-│   ├── logger.py
-│   ├── metadata.py
-│   ├── transcriber.py
-│   ├── utils.py
-│   └── services/
-│       └── transcript_service.py
-│
-├── main.py
-├── requirements.txt
-└── README.md
+A transcrição manual de entrevistas, reuniões e gravações acadêmicas é um processo extremamente demorado e repetitivo. Pesquisadores, jornalistas e profissionais gastam horas transcrevendo áudio manualmente, além de enfrentar dificuldades para:
+
+- **Localizar trechos específicos** em gravações longas
+- **Identificar quem está falando** em conversas com múltiplos participantes
+- **Exportar transcrições** em formatos compatíveis com diferentes ferramentas
+- **Navegar rapidamente** entre o áudio e o texto transcrito
+
+Este projeto automatiza todo esse processo, reduzindo drasticamente o tempo necessário e melhorando a qualidade da análise de conteúdo.
+
+---
+
+## 💡 Solução proposta
+
+O **Whisper Interview Transcriber** oferece:
+
+1. **Transcrição automática**: Utiliza o modelo Whisper (OpenAI) para converter áudio em texto com alta precisão
+2. **Interface web interativa**: Player de vídeo sincronizado com segmentos de texto clicáveis
+3. **Identificação de speakers**: Integração opcional com PyAnnote para diferenciar quem está falando
+4. **Busca inteligente**: Filtragem em tempo real dos segmentos transcritos
+5. **Exportação flexível**: Download em TXT, JSON e SRT para uso em outras ferramentas
+6. **Navegação por timestamps**: Clique em qualquer segmento para pular direto no vídeo
+
+---
+
+## 🏗️ Arquitetura do sistema
+
+O projeto segue uma arquitetura cliente-servidor com separação clara de responsabilidades:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                       FRONTEND (Web)                        │
+│  HTML + CSS + JavaScript → Interface de usuário            │
+│  - Upload de arquivos                                       │
+│  - Player de vídeo                                          │
+│  - Lista de segmentos                                       │
+│  - Busca e download                                         │
+└──────────────────┬──────────────────────────────────────────┘
+                   │ HTTP/REST API
+┌──────────────────▼──────────────────────────────────────────┐
+│                    BACKEND (FastAPI)                        │
+│  - Gerenciamento de uploads                                 │
+│  - Roteamento de requisições                                │
+│  - Servir arquivos estáticos                                │
+│  - API REST para transcrições                               │
+└──────────────────┬──────────────────────────────────────────┘
+                   │
+┌──────────────────▼──────────────────────────────────────────┐
+│               SERVIÇOS DE PROCESSAMENTO                     │
+│                                                              │
+│  ┌─────────────────┐       ┌──────────────────┐           │
+│  │ TranscriptService│──────▶│ Whisper Model    │           │
+│  │                  │       │ (OpenAI)         │           │
+│  └────────┬─────────┘       └──────────────────┘           │
+│           │                                                  │
+│           │ (opcional)                                       │
+│           ▼                                                  │
+│  ┌──────────────────┐                                       │
+│  │ PyAnnote Audio   │                                       │
+│  │ (Diarization)    │                                       │
+│  └──────────────────┘                                       │
+└──────────────────┬──────────────────────────────────────────┘
+                   │
+┌──────────────────▼──────────────────────────────────────────┐
+│                  CAMADA DE DADOS                            │
+│  - input/    → arquivos de vídeo/áudio originais           │
+│  - output/   → transcrições em JSON/TXT/SRT                │
+│  - frontend/media/ → cópias para reprodução web            │
+│  - logs/     → registros de execução                        │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-## Requisitos
+### Fluxo de processamento
 
-- Python 3.10+
-- FFmpeg instalado no sistema
-- pip atualizado
+1. **Upload**: Usuário envia vídeo/áudio via interface web
+2. **Armazenamento**: Arquivo salvo em `input/` e copiado para `frontend/media/`
+3. **Transcrição**: Whisper processa o áudio e gera segmentos com timestamps
+4. **Diarization** (opcional): PyAnnote identifica diferentes speakers
+5. **Normalização**: Segmentos formatados em estrutura JSON padrão
+6. **Exportação**: Geração automática de TXT, JSON e SRT
+7. **Visualização**: Frontend renderiza player sincronizado com transcrição
 
-## Instalação
+---
+
+## 🛠️ Tecnologias utilizadas
+
+### Backend
+- **Python 3.11+** - Linguagem principal
+- **FastAPI** - Framework web moderno e assíncrono
+- **Uvicorn** - Servidor ASGI de alta performance
+- **OpenAI Whisper** - Modelo de transcrição de áudio para texto
+- **PyAnnote.audio** (opcional) - Diarization e identificação de speakers
+- **PyTorch** - Framework de deep learning (dependência do Whisper)
+- **FFmpeg** - Processamento de áudio e vídeo
+
+### Frontend
+- **HTML5** - Estrutura
+- **CSS3** - Estilização moderna com dark theme
+- **JavaScript (Vanilla)** - Lógica de interação
+- **Fetch API** - Comunicação com backend
+
+### Ferramentas de desenvolvimento
+- **Python Logging** - Sistema de logs estruturado
+- **Python Multipart** - Upload de arquivos
+- **JSON** - Formato de troca de dados
+
+---
+
+## 📁 Estrutura de diretórios
+
+```
+whisper-interview-transcriber/
+│
+├── docs/                          # Documentação técnica
+│   ├── architecture.md            # Arquitetura detalhada
+│   ├── como_funciona.md           # Fluxo de funcionamento
+│   ├── diarization.md             # Guia de identificação de speakers
+│   └── roadmap.md                 # Melhorias futuras
+│
+├── frontend/                      # Interface web
+│   ├── index.html                 # Página principal
+│   ├── style.css                  # Estilos da aplicação
+│   ├── app.js                     # Lógica do frontend
+│   └── media/                     # Vídeos para reprodução web
+│
+├── input/                         # Arquivos de entrada (vídeos/áudios)
+├── output/                        # Transcrições geradas (JSON/TXT/SRT)
+├── logs/                          # Logs de execução
+├── samples/                       # Arquivos de exemplo
+│
+├── src/                           # Código-fonte principal
+│   ├── __init__.py
+│   ├── api.py                     # Rotas da API REST
+│   ├── cleaner.py                 # Limpeza de segmentos
+│   ├── cli.py                     # Interface de linha de comando
+│   ├── config.py                  # Configurações globais
+│   ├── exporter.py                # Exportação de arquivos
+│   ├── formatter.py               # Formatação de saídas
+│   ├── logger.py                  # Sistema de logging
+│   ├── metadata.py                # Metadados das transcrições
+│   ├── transcriber.py             # Integração com Whisper
+│   ├── utils.py                   # Funções auxiliares
+│   │
+│   └── services/                  # Camada de serviços
+│       ├── __init__.py
+│       └── transcript_service.py  # Lógica de processamento
+│
+├── tests/                         # Testes automatizados
+│   ├── __init__.py
+│   └── test_utils.py
+│
+├── main.py                        # Ponto de entrada da aplicação
+├── requirements.txt               # Dependências Python
+└── README.md                      # Este arquivo
+```
+
+---
+
+## 🚀 Como executar o projeto
+
+### Pré-requisitos
+
+- **Python 3.11+** instalado
+- **FFmpeg** instalado no sistema
+- **Git** para clonar o repositório
 
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/whisper-interview-transcriber.git
+git clone https://github.com/Victorkaue333/whisper-interview-transcriber.git
 cd whisper-interview-transcriber
 ```
 
 ### 2. Crie e ative um ambiente virtual
 
-#### Windows
+**Windows:**
 ```bash
 python -m venv venv
 venv\Scripts\activate
 ```
 
-#### Linux/macOS
+**Linux/macOS:**
 ```bash
 python3 -m venv venv
 source venv/bin/activate
@@ -93,82 +213,189 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Instalação do FFmpeg
+### 4. Instale o FFmpeg (se ainda não tiver)
 
-O Whisper precisa do FFmpeg para processar arquivos de áudio e vídeo.
+**Windows:**
+1. Baixe o FFmpeg em [ffmpeg.org](https://ffmpeg.org/download.html)
+2. Extraia e adicione ao PATH do sistema
 
-### Windows
-Baixe o FFmpeg e adicione ao PATH do sistema.
-
-### Linux
+**Linux (Ubuntu/Debian):**
 ```bash
 sudo apt update
 sudo apt install ffmpeg
 ```
 
-### macOS
+**macOS:**
 ```bash
 brew install ffmpeg
 ```
 
-## Como usar
-
-1. Coloque o arquivo da entrevista dentro da pasta `input/`
-2. Renomeie para `entrevista.mp4` ou ajuste o nome no `main.py`
-3. Execute:
+### 5. Inicie o servidor
 
 ```bash
-python main.py
+uvicorn src.api:app --reload
 ```
 
-## Saídas geradas
-
-Os arquivos serão salvos na pasta `output/`:
-
-- `transcript.txt` → transcrição formatada com timestamps
-- `transcript.json` → transcrição estruturada em JSON
-- `transcript.srt` → legendas em formato SRT
-
-## Exemplo de saída em TXT
-
-```text
-[00:00:00 --> 00:00:08]
-Olá, bom dia. Hoje estamos aqui com o convidado...
-
-[00:00:08 --> 00:00:16]
-A etnia do nosso convidado é a Pancará...
-```
-
-## Limitações atuais
-
-- a separação automática por falante depende de diarização, que não está incluída nesta primeira versão
-- o Whisper transcreve muito bem, mas não identifica nomes dos participantes sozinho
-- para identificar "Victor", "Thalysson" e "Francisco", é possível integrar diarização em uma próxima versão
-
-
-## Logs da aplicação
-
-O projeto utiliza a biblioteca nativa `logging` do Python para registrar a execução da aplicação.
-
-Os logs são exibidos no terminal e também salvos em:
+ou
 
 ```bash
-logs/app.log
+python main.py web
 ```
 
-Eles registram:
+### 6. Acesse a aplicação
 
-- início da execução
-- arquivo processado
-- modelo do Whisper usado
-- erros
-- arquivos exportados
+Abra o navegador e acesse:
+```
+http://127.0.0.1:8000
+```
 
+---
 
-## Melhorias futuras
+## 🔄 Fluxo de funcionamento do sistema
 
-- diarização de falantes
-- interface web com upload de arquivos
-- exportação em DOCX
-- limpeza automática de repetições e ruídos
-- sumarização automática por temas
+### Processo completo de transcrição
+
+```
+1. UPLOAD
+   ↓
+   Usuário seleciona arquivo de vídeo/áudio na interface
+   Opcionalmente marca "Identificar quem está falando"
+   
+2. RECEBIMENTO
+   ↓
+   FastAPI recebe arquivo via POST /api/upload
+   Valida formato (.mp4, .mov, .avi, .mp3, .wav, etc.)
+   
+3. ARMAZENAMENTO
+   ↓
+   Gera ID único (job_id)
+   Salva arquivo em input/{job_id}_{filename}
+   Copia para frontend/media/ (para reprodução web)
+   
+4. TRANSCRIÇÃO
+   ↓
+   Carrega modelo Whisper (base/small/medium/large)
+   Processa áudio completo
+   Gera segmentos com timestamps (start, end, text)
+   
+5. DIARIZATION (opcional)
+   ↓
+   Se habilitado, carrega PyAnnote Pipeline
+   Identifica diferentes vozes no áudio
+   Atribui labels (SPEAKER_00, SPEAKER_01, etc.)
+   Mapeia speakers para segmentos
+   
+6. NORMALIZAÇÃO
+   ↓
+   Converte resultado Whisper para formato padrão:
+   {
+     "start": 0.0,
+     "end": 5.2,
+     "speaker": "SPEAKER_00",
+     "text": "Olá, tudo bem?"
+   }
+   
+7. EXPORTAÇÃO
+   ↓
+   Gera automaticamente:
+   - {job_id}_segments.json → dados completos
+   - {job_id}.txt → transcrição formatada
+   - {job_id}.srt → legendas para vídeo
+   
+8. RESPOSTA
+   ↓
+   Retorna JSON com:
+   - job_id
+   - video_url (para player)
+   - segments[] (lista de transcrições)
+   
+9. RENDERIZAÇÃO
+   ↓
+   Frontend recebe dados
+   Carrega vídeo no player
+   Renderiza lista de segmentos clicáveis
+   Habilita busca e downloads
+   
+10. INTERAÇÃO
+    ↓
+    Usuário clica em segmento → vídeo pula para timestamp
+    Usuário busca palavra → filtra segmentos
+    Usuário clica download → baixa TXT/JSON/SRT
+```
+
+### API Endpoints
+
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| `GET` | `/` | Retorna página HTML principal |
+| `POST` | `/api/upload` | Upload e processamento de vídeo |
+| `GET` | `/api/transcript/{job_id}` | Retorna transcrição por ID |
+| `GET` | `/api/download/{job_id}/{format}` | Download em TXT/JSON/SRT |
+
+---
+
+## 🎯 Possíveis melhorias / Roadmap
+
+### Curto prazo
+- ✅ ~~Interface web interativa~~ (implementado)
+- ✅ ~~Botões de download (TXT, JSON, SRT)~~ (implementado)
+- ✅ ~~Identificação opcional de speakers~~ (implementado)
+- [ ] Suporte a múltiplos idiomas via dropdown
+- [ ] Indicador de progresso durante transcrição
+- [ ] Histórico de transcrições anteriores
+
+### Médio prazo
+- [ ] Edição manual de segmentos na interface
+- [ ] Exportação em DOCX com formatação
+- [ ] Suporte a legendas bilíngues (tradução automática)
+- [ ] Modo batch para processar múltiplos arquivos
+- [ ] Detecção automática de idioma
+
+### Longo prazo
+- [ ] Sumarização automática com GPT
+- [ ] Análise de sentimento por segmento
+- [ ] Extração automática de palavras-chave
+- [ ] Sistema de tags e categorização
+- [ ] API pública com autenticação
+- [ ] Deploy em cloud (AWS/GCP/Azure)
+- [ ] Containerização com Docker
+- [ ] Processamento assíncrono com Celery
+
+### Identificação avançada de speakers
+- [ ] Renomear speakers manualmente (SPEAKER_00 → "Victor")
+- [ ] Treinamento de modelo com vozes conhecidas
+- [ ] Detecção de emoção na fala
+
+---
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+## 👨‍💻 Autor
+
+**Victor Alves** - [GitHub](https://github.com/Victorkaue333)
+
+---
+
+## 🤝 Contribuindo
+
+Contribuições são bem-vindas! Sinta-se à vontade para:
+
+1. Fazer fork do projeto
+2. Criar uma branch para sua feature (`git checkout -b feature/NovaFuncionalidade`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/NovaFuncionalidade`)
+5. Abrir um Pull Request
+
+---
+
+## 📧 Contato
+
+Para dúvidas ou sugestões, abra uma [issue](https://github.com/Victorkaue333/whisper-interview-transcriber/issues) no GitHub.
+
+---
+
+**⭐ Se este projeto foi útil para você, considere dar uma estrela no repositório!**
