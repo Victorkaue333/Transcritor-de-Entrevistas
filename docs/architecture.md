@@ -192,6 +192,8 @@ Salva output/{job_id}_segments.json
 
 ### 5️⃣ Retorno ao Cliente
 
+O retorno ao cliente é dadoo em formato JSON, contendo o `job_id`, a URL do vídeo para reprodução e os segmentos transcritos. O frontend então renderiza o player e a lista de segmentos, salvando tudo em localStorage para persistência.
+
 ```
 [API] Retorna JSON:
 {
