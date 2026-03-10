@@ -196,12 +196,14 @@ cd whisper-interview-transcriber
 ### 2. Crie e ative um ambiente virtual
 
 **Windows:**
+
 ```bash
 python -m venv venv
 venv\Scripts\activate
 ```
 
 **Linux/macOS:**
+
 ```bash
 python3 -m venv venv
 source venv/bin/activate
