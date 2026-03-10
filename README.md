@@ -108,6 +108,7 @@ O projeto segue uma arquitetura cliente-servidor com separação clara de respon
 ## 🛠️ Tecnologias utilizadas
 
 ### Backend
+
 - **Python 3.11+** - Linguagem principal
 - **FastAPI** - Framework web moderno e assíncrono
 - **Uvicorn** - Servidor ASGI de alta performance
@@ -117,12 +118,14 @@ O projeto segue uma arquitetura cliente-servidor com separação clara de respon
 - **FFmpeg** - Processamento de áudio e vídeo
 
 ### Frontend
+
 - **HTML5** - Estrutura
 - **CSS3** - Estilização moderna com dark theme
 - **JavaScript (Vanilla)** - Lógica de interação
 - **Fetch API** - Comunicação com backend
 
 ### Ferramentas de desenvolvimento
+
 - **Python Logging** - Sistema de logs estruturado
 - **Python Multipart** - Upload de arquivos
 - **JSON** - Formato de troca de dados
