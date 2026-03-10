@@ -234,6 +234,7 @@ sudo apt install ffmpeg
 ```
 
 **macOS:**
+
 ```bash
 brew install ffmpeg
 ```
@@ -253,6 +254,7 @@ python main.py web
 ### 6. Acesse a aplicação
 
 Abra o navegador e acesse:
+
 ```
 http://127.0.0.1:8000
 ```
