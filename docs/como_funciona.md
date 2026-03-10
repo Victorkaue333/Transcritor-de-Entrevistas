@@ -118,6 +118,7 @@ Salvo como:
 - Service: `src/services/transcript_service.py` → método `_apply_diarization()`
 
 **Antes da diarização:**
+
 ```json
 {
   "start": 0.0,
@@ -128,6 +129,7 @@ Salvo como:
 ```
 
 **Depois da diarização:**
+
 ```json
 {
   "start": 0.0,
@@ -138,6 +140,7 @@ Salvo como:
 ```
 
 **Limitações:**
+
 - Não identifica nomes reais (apenas diferencia vozes)
 - Adiciona 2-3x ao tempo de processamento
 - Requer configuração de token HuggingFace
