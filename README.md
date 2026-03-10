@@ -351,17 +351,6 @@ http://127.0.0.1:8000
 - [ ] Modo batch para processar múltiplos arquivos
 - [ ] Detecção automática de idioma
 
-### Longo prazo
-- [ ] Sumarização automática com GPT
-- [ ] Análise de sentimento por segmento
-- [ ] Extração automática de palavras-chave
-- [ ] Sistema de tags e categorização
-- [ ] API pública com autenticação
-- [ ] Deploy em cloud (AWS/GCP/Azure)
-- [ ] Containerização com Docker
-- [ ] Processamento assíncrono com Celery
-
-
 ## 👨‍💻 Autor
 
 **Victor Alves** - [GitHub](https://github.com/Victorkaue333)
