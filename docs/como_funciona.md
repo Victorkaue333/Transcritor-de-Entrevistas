@@ -565,4 +565,4 @@ except Exception as e:
 
 ---
 
-Este documento deve ajudar a entender completamente como o sistema opera, desde a interface até o processamento interno!
+Este documento serve para ajudar a entender completamente como o sistema opera, desde a interface até o processamento interno!
