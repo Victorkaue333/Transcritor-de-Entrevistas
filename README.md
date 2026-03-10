@@ -361,10 +361,6 @@ http://127.0.0.1:8000
 - [ ] Containerização com Docker
 - [ ] Processamento assíncrono com Celery
 
-### Identificação avançada de speakers
-- [ ] Renomear speakers manualmente (SPEAKER_00 → "Victor")
-- [ ] Treinamento de modelo com vozes conhecidas
-- [ ] Detecção de emoção na fala
 
 ## 👨‍💻 Autor
 
