@@ -252,12 +252,14 @@ Salva em localStorage para persistência
 ## 🔐 Segurança e Validações
 
 ### Upload de Arquivos
+
 - ✅ Validação de extensões permitidas (`.mp4`, `.mp3`, `.wav`, etc.)
 - ✅ Sanitização de nomes de arquivos (remove caracteres especiais)
 - ✅ Geração de UUIDs únicos para evitar colisões
 - ⚠️ **TODO**: Limite de tamanho de arquivo (atualmente ilimitado)
 
 ### API
+
 - ✅ CORS habilitado para desenvolvimento local
 - ✅ Error handling com try/catch
 - ⚠️ **TODO**: Rate limiting para uploads
@@ -268,16 +270,19 @@ Salva em localStorage para persistência
 ## ⚡ Performance e Otimizações
 
 ### Gargalos Identificados
+
 1. **Transcrição com Whisper**: Processo mais lento (minutos para vídeos longos)
 2. **Diarização**: Adiciona 2-3x ao tempo de processamento
 3. **Cópia de arquivos**: Vídeos grandes consomem espaço duplicado
 
 ### Otimizações Implementadas
+
 - ✅ Logs em tempo real para feedback do usuário
 - ✅ Sincronização eficiente (só atualiza ao mudar de segmento)
 - ✅ Modelo `small` por padrão (balanceado)
 
 ### Melhorias Futuras
+
 - 🔄 Processamento assíncrono com filas (Celery/RQ)
 - 🔄 Cache de modelos em memória
 - 🔄 Compressão de vídeos antes de salvar
