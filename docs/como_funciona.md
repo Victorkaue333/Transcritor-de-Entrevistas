@@ -317,13 +317,16 @@ Exibe apenas segmentos relevantes
 ```
 
 **Quando carrega:**
+
 - Automaticamente ao recarregar a página
 - Restaura vídeo, transcrição e botões de download
 
 **Código responsável:**
+
 - Frontend: `app.js` → funções `saveToLocalStorage()` e `loadFromLocalStorage()`
 
 **Por que isso é útil:**
+
 - ✅ Não perde transcrição ao dar F5
 - ✅ Pode fechar aba e voltar depois
 - ✅ Funciona offline (depois de processado)
@@ -335,6 +338,7 @@ Exibe apenas segmentos relevantes
 ### Logs Visuais (Frontend)
 
 **Tipos de log:**
+
 - **INFO** (azul): Eventos normais
 - **SUCCESS** (verde): Operações concluídas
 - **WARNING** (amarelo): Avisos não-críticos
