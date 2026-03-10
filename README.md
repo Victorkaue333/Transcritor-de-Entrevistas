@@ -70,11 +70,11 @@ O projeto segue uma arquitetura cliente-servidor com separação clara de respon
                    │
 ┌──────────────────▼──────────────────────────────────────────┐
 │               SERVIÇOS DE PROCESSAMENTO                     │
-│                                                              │
-│  ┌─────────────────┐       ┌──────────────────┐           │
-│  │ TranscriptService│──────▶│ Whisper Model    │           │
-│  │                  │       │ (OpenAI)         │           │
-│  └────────┬─────────┘       └──────────────────┘           │
+│                                                             │
+│  ┌─────────────────┐         ┌──────────────────┐           │
+│  │ TranscriptService│──────▶│ Whisper Model    │            │
+│  │                  │        │ (OpenAI)         │            │
+│  └────────┬─────────┘        └──────────────────┘           │
 │           │                                                  │
 │           │ (opcional)                                       │
 │           ▼                                                  │
@@ -86,9 +86,9 @@ O projeto segue uma arquitetura cliente-servidor com separação clara de respon
                    │
 ┌──────────────────▼──────────────────────────────────────────┐
 │                  CAMADA DE DADOS                            │
-│  - input/    → arquivos de vídeo/áudio originais           │
-│  - output/   → transcrições em JSON/TXT/SRT                │
-│  - frontend/media/ → cópias para reprodução web            │
+│  - input/    → arquivos de vídeo/áudio originais            │
+│  - output/   → transcrições em JSON/TXT/SRT                 │
+│  - frontend/media/ → cópias para reprodução web             │
 │  - logs/     → registros de execução                        │
 └─────────────────────────────────────────────────────────────┘
 ```
