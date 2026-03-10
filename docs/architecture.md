@@ -154,6 +154,8 @@ Retorna: {
 
 ### 3️⃣ Diarização (se habilitada)
 
+O sistema verifica se a diarização foi solicitada. Se sim, ele chama o modelo PyAnnote para analisar o áudio e identificar os diferentes falantes. Os segmentos são atualizados com um campo adicional `speaker`.
+
 ```
 [TranscriptService] _apply_diarization()
         ↓
