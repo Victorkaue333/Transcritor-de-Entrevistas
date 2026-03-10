@@ -63,6 +63,7 @@ Salvo como:
 ### Fase 2: Transcrição com Whisper
 
 **O que acontece:**
+
 1. Carrega modelo Whisper **small** (~466 MB)
 2. Processa o áudio extraindo:
    - Texto transcrito
@@ -71,10 +72,12 @@ Salvo como:
 3. Gera uma lista de segmentos
 
 **Código responsável:**
+
 - Service: `src/services/transcript_service.py` → método `_run_existing_transcriber()`
 - Core: `src/transcriber.py` → função `transcribe_file()`
 
 **Exemplo de saída do Whisper:**
+
 ```json
 {
   "segments": [
