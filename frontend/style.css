@@ -77,6 +77,111 @@
         color: #aeb7c5;
         }
 
+        /* Painel de Logs */
+        .logs-panel {
+        background: #171a22;
+        border: 1px solid #2a3040;
+        border-radius: 14px;
+        padding: 16px;
+        margin-bottom: 24px;
+        max-height: 300px;
+        }
+
+        .logs-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        }
+
+        .logs-header h3 {
+        margin: 0;
+        font-size: 18px;
+        color: #f5f7fa;
+        }
+
+        .clear-btn {
+        background: #ef4444;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 6px 12px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+        transition: 0.2s ease;
+        }
+
+        .clear-btn:hover {
+        background: #dc2626;
+        }
+
+        .logs-list {
+        max-height: 220px;
+        overflow-y: auto;
+        background: #0f1117;
+        border: 1px solid #2f3747;
+        border-radius: 8px;
+        padding: 12px;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        }
+
+        .log-entry {
+        padding: 6px 0;
+        border-bottom: 1px solid #1f2937;
+        display: flex;
+        gap: 8px;
+        animation: slideIn 0.3s ease;
+        }
+
+        .log-entry:last-child {
+        border-bottom: none;
+        }
+
+        .log-time {
+        color: #6b7280;
+        font-size: 11px;
+        min-width: 60px;
+        }
+
+        .log-level {
+        font-weight: bold;
+        min-width: 50px;
+        }
+
+        .log-level.info {
+        color: #3b82f6;
+        }
+
+        .log-level.success {
+        color: #10b981;
+        }
+
+        .log-level.warning {
+        color: #f59e0b;
+        }
+
+        .log-level.error {
+        color: #ef4444;
+        }
+
+        .log-message {
+        color: #d1d5db;
+        flex: 1;
+        }
+
+        @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        }
+
         .main-grid {
         display: grid;
         grid-template-columns: 1.2fr 1fr;

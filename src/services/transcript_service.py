@@ -30,17 +30,21 @@ class TranscriptService:
 
     def save_upload(self, source_file_path: Path, original_filename: str) -> dict[str, Any]:
         job_id = str(uuid.uuid4())[:8]
+        
+        self.logger.info(f"[{job_id}] Iniciando salvamento de arquivo: {original_filename}")
 
         safe_name = original_filename.replace(" ", "_")
         input_filename = f"{job_id}_{safe_name}"
         input_path = self.input_dir / input_filename
 
         shutil.copy2(source_file_path, input_path)
+        self.logger.info(f"[{job_id}] Arquivo salvo em: {input_path}")
 
         # cópia para o frontend tocar no player
         media_filename = input_filename
         media_path = self.frontend_media_dir / media_filename
         shutil.copy2(input_path, media_path)
+        self.logger.info(f"[{job_id}] Cópia criada para frontend: {media_path}")
 
         return {
             "job_id": job_id,
@@ -51,18 +55,29 @@ class TranscriptService:
 
     def process_video(self, source_file_path: Path, original_filename: str, enable_diarization: bool = False) -> dict[str, Any]:
         saved = self.save_upload(source_file_path, original_filename)
+        job_id = saved["job_id"]
+        
+        self.logger.info(f"[{job_id}] Iniciando processamento completo")
+        self.logger.info(f"[{job_id}] Diarization: {'Habilitado' if enable_diarization else 'Desabilitado'}")
 
+        # Transcrição com Whisper
+        self.logger.info(f"[{job_id}] Fase 1: Transcrição com Whisper")
         raw_result = self._run_existing_transcriber(saved["input_path"], saved["job_id"])
+        self.logger.info(f"[{job_id}] Transcrição Whisper concluída")
         
         # Se diarization estiver habilitado, aplica identificação de speakers
         if enable_diarization:
             try:
-                self.logger.info(f"Aplicando diarization para job_id: {saved['job_id']}")
+                self.logger.info(f"[{job_id}] Fase 2: Aplicando diarization (identificação de speakers)")
                 raw_result = self._apply_diarization(saved["input_path"], raw_result)
+                self.logger.info(f"[{job_id}] Diarization concluída")
             except Exception as e:
-                self.logger.warning(f"Falha ao aplicar diarization: {e}. Continuando sem identificação de speakers.")
+                self.logger.warning(f"[{job_id}] Falha ao aplicar diarization: {e}. Continuando sem identificação de speakers.")
         
+        # Normalização dos segmentos
+        self.logger.info(f"[{job_id}] Fase 3: Normalizando segmentos")
         normalized_segments = self._normalize_segments(raw_result)
+        self.logger.info(f"[{job_id}] {len(normalized_segments)} segmentos normalizados")
 
         result_payload = {
             "job_id": saved["job_id"],
@@ -71,12 +86,17 @@ class TranscriptService:
         }
 
         # Salva JSON
+        self.logger.info(f"[{job_id}] Fase 4: Salvando resultados")
         output_json = self.output_dir / f"{saved['job_id']}_segments.json"
         with output_json.open("w", encoding="utf-8") as f:
             json.dump(result_payload, f, ensure_ascii=False, indent=2)
+        self.logger.info(f"[{job_id}] JSON salvo: {output_json}")
 
         # Gera arquivos TXT e SRT para download
+        self.logger.info(f"[{job_id}] Fase 5: Gerando arquivos de download")
         self._generate_download_files(saved["job_id"], normalized_segments)
+        
+        self.logger.info(f"[{job_id}] ✅ Processamento completo finalizado com sucesso!")
 
         return result_payload
 
@@ -90,11 +110,13 @@ class TranscriptService:
 
     def _run_existing_transcriber(self, input_video_path: Path, job_id: str) -> Any:
         """
-        Executa o transcriber do Whisper no arquivo de vídeo/áudio.
+        Executa el transcriber do Whisper no arquivo de vídeo/áudio.
         Retorna o resultado com os segmentos transcritos.
         """
         try:
-            self.logger.info(f"Iniciando transcrição para job_id: {job_id}")
+            self.logger.info(f"[{job_id}] Carregando modelo Whisper: medium")
+            self.logger.info(f"[{job_id}] Arquivo de entrada: {input_video_path.name}")
+            self.logger.info(f"[{job_id}] Idioma: Português (pt)")
             
             # Usando modelo medium (balanceado - alta precisão e tempo razoável)
             # Opções: "tiny" (rápido) | "base" | "small" | "medium" | "large" (mais preciso)
@@ -105,11 +127,12 @@ class TranscriptService:
                 logger=self.logger
             )
             
-            self.logger.info(f"Transcrição concluída para job_id: {job_id}")
+            segments_count = len(result.get("segments", []))
+            self.logger.info(f"[{job_id}] ✅ Transcrição Whisper concluída: {segments_count} segmentos detectados")
             return result
             
         except Exception as e:
-            self.logger.error(f"Erro ao transcrever arquivo {input_video_path}: {e}")
+            self.logger.error(f"[{job_id}] ❌ Erro ao transcrever arquivo {input_video_path}: {e}")
             raise
 
     def _apply_diarization(self, audio_path: Path, whisper_result: Any) -> Any:
@@ -164,6 +187,7 @@ class TranscriptService:
     def _generate_download_files(self, job_id: str, segments: list[dict[str, Any]]) -> None:
         """Gera arquivos TXT e SRT para download"""
         try:
+            self.logger.info(f"[{job_id}] Gerando arquivo TXT...")
             # Gera TXT simples
             txt_lines = []
             for segment in segments:
@@ -180,7 +204,9 @@ class TranscriptService:
             txt_path = self.output_dir / f"{job_id}.txt"
             with txt_path.open("w", encoding="utf-8") as f:
                 f.write(txt_content)
+            self.logger.info(f"[{job_id}] ✅ TXT gerado: {txt_path.name}")
             
+            self.logger.info(f"[{job_id}] Gerando arquivo SRT...")
             # Gera SRT
             srt_lines = []
             for index, segment in enumerate(segments, start=1):
@@ -197,10 +223,11 @@ class TranscriptService:
             srt_path = self.output_dir / f"{job_id}.srt"
             with srt_path.open("w", encoding="utf-8") as f:
                 f.write(srt_content)
+            self.logger.info(f"[{job_id}] ✅ SRT gerado: {srt_path.name}")
             
-            self.logger.info(f"Arquivos de download gerados para job_id: {job_id}")
+            self.logger.info(f"[{job_id}] Arquivos de download prontos (TXT, JSON, SRT)")
         except Exception as e:
-            self.logger.error(f"Erro ao gerar arquivos de download: {e}")
+            self.logger.error(f"[{job_id}] ❌ Erro ao gerar arquivos de download: {e}")
 
     def _seconds_to_time(self, seconds: float) -> str:
         """Converte segundos para formato HH:MM:SS"""

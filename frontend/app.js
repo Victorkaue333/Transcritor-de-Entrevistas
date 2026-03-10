@@ -9,9 +9,40 @@ const downloadButtons = document.getElementById("downloadButtons");
 const downloadTxt = document.getElementById("downloadTxt");
 const downloadJson = document.getElementById("downloadJson");
 const downloadSrt = document.getElementById("downloadSrt");
+const logsPanel = document.getElementById("logsPanel");
+const logsList = document.getElementById("logsList");
+const clearLogsBtn = document.getElementById("clearLogsBtn");
 
 let segmentsCache = [];
 let currentJobId = null;
+
+// Sistema de Logs
+function addLog(level, message) {
+    const now = new Date();
+    const time = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    
+    const logEntry = document.createElement("div");
+    logEntry.className = "log-entry";
+    
+    logEntry.innerHTML = `
+        <span class="log-time">${time}</span>
+        <span class="log-level ${level}">[${level.toUpperCase()}]</span>
+        <span class="log-message">${message}</span>
+    `;
+    
+    logsList.appendChild(logEntry);
+    logsList.scrollTop = logsList.scrollHeight;
+    
+    // Mostra o painel se estiver oculto
+    if (logsPanel.style.display === "none") {
+        logsPanel.style.display = "block";
+    }
+}
+
+clearLogsBtn.addEventListener("click", () => {
+    logsList.innerHTML = "";
+    addLog("info", "Logs limpos");
+});
 
 function formatTime(seconds) {
     const total = Math.floor(seconds);
@@ -69,18 +100,28 @@ function formatTime(seconds) {
 
     if (!file) {
         statusText.textContent = "Selecione um arquivo primeiro.";
+        addLog("warning", "Nenhum arquivo selecionado");
         return;
     }
+
+    addLog("info", `Arquivo selecionado: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`);
 
     const formData = new FormData();
     formData.append("file", file);
     formData.append("enable_diarization", diarizationCheck.checked);
 
-    statusText.textContent = "Enviando e transcrevendo...";
+    if (diarizationCheck.checked) {
+        addLog("info", "Identificação de speakers habilitada");
+    }
+
+    statusText.textContent = "Enviando arquivo...";
+    addLog("info", "Enviando arquivo para o servidor...");
     uploadBtn.disabled = true;
     downloadButtons.style.display = "none";
 
     try {
+        addLog("info", "Aguardando processamento (isso pode demorar alguns minutos)...");
+        
         const response = await fetch("/api/upload", {
         method: "POST",
         body: formData,
@@ -92,6 +133,9 @@ function formatTime(seconds) {
         throw new Error(data.detail || "Erro ao processar arquivo.");
         }
 
+        addLog("success", `Transcrição concluída! Job ID: ${data.job_id}`);
+        addLog("success", `${data.segments.length} segmentos gerados`);
+
         currentJobId = data.job_id;
         videoPlayer.src = data.video_url;
         segmentsCache = data.segments || [];
@@ -99,9 +143,11 @@ function formatTime(seconds) {
 
         downloadButtons.style.display = "flex";
         statusText.textContent = `Transcrição concluída. ${segmentsCache.length} trechos carregados.`;
+        addLog("info", "Arquivos de download prontos (TXT, JSON, SRT)");
     } catch (error) {
         statusText.textContent = `Erro: ${error.message}`;
         transcriptList.innerHTML = `<div class="empty-state">Falha ao carregar transcrição.</div>`;
+        addLog("error", `Erro ao processar: ${error.message}`);
     } finally {
         uploadBtn.disabled = false;
     }
@@ -110,18 +156,21 @@ function formatTime(seconds) {
 // Botões de download
 downloadTxt.addEventListener("click", () => {
     if (currentJobId) {
+        addLog("info", "Baixando arquivo TXT...");
         window.location.href = `/api/download/${currentJobId}/txt`;
     }
 });
 
 downloadJson.addEventListener("click", () => {
     if (currentJobId) {
+        addLog("info", "Baixando arquivo JSON...");
         window.location.href = `/api/download/${currentJobId}/json`;
     }
 });
 
 downloadSrt.addEventListener("click", () => {
     if (currentJobId) {
+        addLog("info", "Baixando arquivo SRT...");
         window.location.href = `/api/download/${currentJobId}/srt`;
     }
 });
@@ -129,3 +178,6 @@ downloadSrt.addEventListener("click", () => {
 searchInput.addEventListener("input", (event) => {
     renderSegments(segmentsCache, event.target.value);
 });
+
+// Log inicial
+addLog("info", "Sistema iniciado. Aguardando upload de arquivo...");
