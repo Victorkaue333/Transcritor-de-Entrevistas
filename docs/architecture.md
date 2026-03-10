@@ -403,23 +403,27 @@ whisper-interview-transcriber/
 ## 🚀 Deploy e Escalabilidade
 
 ### Ambiente de Desenvolvimento
+
 ```bash
 uvicorn src.api:app --reload
 # Acesse: http://127.0.0.1:8000
 ```
 
 ### Ambiente de Produção
+
 - **Servidor**: Uvicorn com múltiplos workers
 - **Proxy reverso**: Nginx recomendado
 - **Storage**: Volume persistente para input/output/media
 - **Considerações**: GPU acelera Whisper significativamente
 
 ### Limitações Atuais
+
 - ⚠️ Processos síncronos (bloqueia durante transcrição)
 - ⚠️ Sem fila de jobs (um processamento por vez)
 - ⚠️ Armazenamento local (não escalável para múltiplos servidores)
 
 ### Melhorias para Produção
+
 - Migrar para arquitetura de microserviços
 - Usar banco de dados (PostgreSQL) ao invés de arquivos
 - Implementar fila de jobs (Redis + Celery)
