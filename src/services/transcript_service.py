@@ -6,7 +6,6 @@ import uuid
 from pathlib import Path
 from typing import Any
 
-from src.formatter import format_segments_to_srt, format_segments_to_txt
 from src.logger import setup_logger
 from src.transcriber import transcribe_file
 
@@ -165,14 +164,36 @@ class TranscriptService:
     def _generate_download_files(self, job_id: str, segments: list[dict[str, Any]]) -> None:
         """Gera arquivos TXT e SRT para download"""
         try:
-            # Gera TXT
-            txt_content = format_segments_to_txt(segments, metadata={})
+            # Gera TXT simples
+            txt_lines = []
+            for segment in segments:
+                start = self._seconds_to_time(segment["start"])
+                end = self._seconds_to_time(segment["end"])
+                speaker = segment.get("speaker", "Desconhecido")
+                text = segment.get("text", "").strip()
+                
+                txt_lines.append(f"[{start} --> {end}] {speaker}")
+                txt_lines.append(text)
+                txt_lines.append("")
+            
+            txt_content = "\n".join(txt_lines)
             txt_path = self.output_dir / f"{job_id}.txt"
             with txt_path.open("w", encoding="utf-8") as f:
                 f.write(txt_content)
             
             # Gera SRT
-            srt_content = format_segments_to_srt(segments)
+            srt_lines = []
+            for index, segment in enumerate(segments, start=1):
+                start = self._seconds_to_srt_time(segment["start"])
+                end = self._seconds_to_srt_time(segment["end"])
+                text = segment.get("text", "").strip()
+                
+                srt_lines.append(str(index))
+                srt_lines.append(f"{start} --> {end}")
+                srt_lines.append(text)
+                srt_lines.append("")
+            
+            srt_content = "\n".join(srt_lines)
             srt_path = self.output_dir / f"{job_id}.srt"
             with srt_path.open("w", encoding="utf-8") as f:
                 f.write(srt_content)
@@ -180,6 +201,27 @@ class TranscriptService:
             self.logger.info(f"Arquivos de download gerados para job_id: {job_id}")
         except Exception as e:
             self.logger.error(f"Erro ao gerar arquivos de download: {e}")
+
+    def _seconds_to_time(self, seconds: float) -> str:
+        """Converte segundos para formato HH:MM:SS"""
+        total = int(seconds)
+        hrs = total // 3600
+        mins = (total % 3600) // 60
+        secs = total % 60
+        
+        if hrs > 0:
+            return f"{hrs:02d}:{mins:02d}:{secs:02d}"
+        return f"{mins:02d}:{secs:02d}"
+    
+    def _seconds_to_srt_time(self, seconds: float) -> str:
+        """Converte segundos para formato SRT (HH:MM:SS,mmm)"""
+        total = int(seconds)
+        millis = int((seconds - total) * 1000)
+        hrs = total // 3600
+        mins = (total % 3600) // 60
+        secs = total % 60
+        
+        return f"{hrs:02d}:{mins:02d}:{secs:02d},{millis:03d}"
 
     def get_download_file(self, job_id: str, format: str) -> Path | None:
         """Retorna o caminho do arquivo de download no formato especificado"""

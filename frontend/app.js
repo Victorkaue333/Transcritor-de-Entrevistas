@@ -105,7 +105,7 @@ function formatTime(seconds) {
     } finally {
         uploadBtn.disabled = false;
     }
-   
+});
 
 // Botões de download
 downloadTxt.addEventListener("click", () => {
@@ -124,8 +124,8 @@ downloadSrt.addEventListener("click", () => {
     if (currentJobId) {
         window.location.href = `/api/download/${currentJobId}/srt`;
     }
-}); });
+});
 
-    searchInput.addEventListener("input", (event) => {
+searchInput.addEventListener("input", (event) => {
     renderSegments(segmentsCache, event.target.value);
 });

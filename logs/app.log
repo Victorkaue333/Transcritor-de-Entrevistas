@@ -22,3 +22,9 @@ FileNotFoundError: Arquivo não encontrado: input\entrevista.mp4
 2026-03-10 14:31:52 | INFO | whisper_transcriber | Iniciando transcrição para job_id: 78d7134a
 2026-03-10 14:31:52 | INFO | whisper_transcriber | Carregando modelo Whisper: base
 2026-03-10 14:31:52 | INFO | whisper_transcriber | Iniciando transcrição do arquivo: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\input\78d7134a_entrevista.mp4
+2026-03-10 14:37:37 | INFO | whisper_transcriber | Iniciando transcrição para job_id: 5edae5c7
+2026-03-10 14:37:37 | INFO | whisper_transcriber | Carregando modelo Whisper: base
+2026-03-10 14:37:38 | INFO | whisper_transcriber | Iniciando transcrição do arquivo: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\input\5edae5c7_entrevista.mp4
+2026-03-10 14:44:17 | INFO | whisper_transcriber | Transcrição concluída com sucesso.
+2026-03-10 14:44:17 | INFO | whisper_transcriber | Transcrição concluída para job_id: 5edae5c7
+2026-03-10 14:44:17 | ERROR | whisper_transcriber | Erro ao gerar arquivos de download: 'interview_name'
