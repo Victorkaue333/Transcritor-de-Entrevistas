@@ -244,21 +244,26 @@ Estou bem, obrigado por perguntar.
 ### Como funciona o destaque automático
 
 **Mecanismo:**
+
 1. Evento `timeupdate` do player HTML5 dispara a cada ~250ms
 2. JavaScript pega o tempo atual do vídeo (ex: 5.2 segundos)
 3. Compara com os timestamps de cada segmento:
+
    ```javascript
    if (currentTime >= segment.start && currentTime <= segment.end) {
      // Este é o segmento ativo!
    }
    ```
+
 4. Adiciona classe CSS `.active` ao segmento correspondente
 5. Faz scroll automático para centralizar na tela
 
 **Código responsável:**
+
 - Frontend: `app.js` → evento `videoPlayer.addEventListener("timeupdate")`
 
 **Efeito visual:**
+
 - Ícone ▶ azul na lateral
 - Background azul claro
 - Borda destacada
@@ -270,12 +275,14 @@ Estou bem, obrigado por perguntar.
 ## 🔍 Sistema de Busca
 
 **Funcionamento:**
+
 1. Usuário digita no campo de busca
 2. Evento `input` captura cada tecla pressionada
 3. Filtra segmentos que contêm a palavra (case-insensitive)
 4. Re-renderiza lista apenas com resultados
 
 **Código responsável:**
+
 - Frontend: `app.js` → `searchInput.addEventListener("input")`
 
 **Exemplo:**
@@ -294,11 +301,13 @@ Exibe apenas segmentos relevantes
 ### Como funciona o localStorage
 
 **Quando salva:**
+
 - Após transcrição completa
 - Ao clicar em segmentos
 - Automático (não precisa de ação do usuário)
 
 **O que salva:**
+
 ```javascript
 {
   jobId: "a7f3c2e1",
