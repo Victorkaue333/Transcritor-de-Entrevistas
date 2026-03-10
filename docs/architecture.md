@@ -354,11 +354,13 @@ whisper-interview-transcriber/
 ## 🔌 Integrações Externas
 
 ### OpenAI Whisper
+
 - **Tipo**: Biblioteca Python local
 - **Requisito**: Modelo baixado automaticamente na primeira execução
 - **Sem necessidade de API key**
 
 ### HuggingFace (PyAnnote)
+
 - **Tipo**: Modelo online com token de autenticação
 - **Requisito**: Conta HuggingFace + aceitar termos de uso
 - **Opcional**: Sistema funciona sem diarização
