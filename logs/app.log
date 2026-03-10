@@ -9,3 +9,8 @@ FileNotFoundError: Arquivo não encontrado: input\entrevista.mp4
 2026-03-10 11:50:31 | INFO | whisper_transcriber | Modelo: medium | Idioma: pt
 2026-03-10 11:50:31 | INFO | whisper_transcriber | Carregando modelo Whisper: medium
 2026-03-10 11:50:41 | INFO | whisper_transcriber | Iniciando transcrição do arquivo: input\entrevista.mp4
+2026-03-10 12:25:33 | INFO | whisper_transcriber | Transcrição concluída com sucesso.
+2026-03-10 12:25:33 | INFO | whisper_transcriber | Arquivo TXT salvo em: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\output\entrevista.txt
+2026-03-10 12:25:33 | INFO | whisper_transcriber | Arquivo JSON salvo em: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\output\entrevista.json
+2026-03-10 12:25:33 | INFO | whisper_transcriber | Arquivo SRT salvo em: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\output\entrevista.srt
+2026-03-10 12:25:33 | INFO | whisper_transcriber | Processamento finalizado com sucesso.
