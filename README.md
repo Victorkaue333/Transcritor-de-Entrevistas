@@ -366,14 +366,6 @@ http://127.0.0.1:8000
 - [ ] Treinamento de modelo com vozes conhecidas
 - [ ] Detecção de emoção na fala
 
----
-
-## 📝 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
 ## 👨‍💻 Autor
 
 **Victor Alves** - [GitHub](https://github.com/Victorkaue333)
