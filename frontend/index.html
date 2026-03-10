@@ -15,6 +15,10 @@
 
         <section class="upload-card">
         <input type="file" id="fileInput" accept="video/*,audio/*" />
+        <label class="checkbox-label">
+            <input type="checkbox" id="diarizationCheck" />
+            Identificar quem está falando
+        </label>
         <button id="uploadBtn">Transcrever</button>
         <span id="statusText">Aguardando arquivo...</span>
         </section>
@@ -29,6 +33,11 @@
             <div class="transcript-top">
             <h2>Transcrição</h2>
             <input type="text" id="searchInput" placeholder="Buscar palavra..." />
+            <div class="download-buttons" id="downloadButtons" style="display: none;">
+                <button class="download-btn" id="downloadTxt">📄 TXT</button>
+                <button class="download-btn" id="downloadJson">📋 JSON</button>
+                <button class="download-btn" id="downloadSrt">🎬 SRT</button>
+            </div>
             </div>
             <div id="transcriptList" class="transcript-list">
             <div class="empty-state">Nenhuma transcrição carregada.</div>

@@ -3,7 +3,7 @@ from __future__ import annotations
 import tempfile
 from pathlib import Path
 
-from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -26,7 +26,10 @@ def read_index():
 
 
 @app.post("/api/upload")
-async def upload_video(file: UploadFile = File(...)):
+async def upload_video(
+    file: UploadFile = File(...),
+    enable_diarization: bool = Form(False)
+):
     allowed_extensions = {".mp4", ".mov", ".mkv", ".avi", ".webm", ".mp3", ".wav", ".m4a"}
     suffix = Path(file.filename).suffix.lower()
 
@@ -42,7 +45,7 @@ async def upload_video(file: UploadFile = File(...)):
         temp_path = Path(temp_file.name)
 
     try:
-        result = service.process_video(temp_path, file.filename)
+        result = service.process_video(temp_path, file.filename, enable_diarization)
         return result
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"Erro ao processar arquivo: {exc}") from exc
@@ -57,3 +60,20 @@ def get_transcript(job_id: str):
     if not data:
         raise HTTPException(status_code=404, detail="Transcrição não encontrada.")
     return data
+
+
+@app.get("/api/download/{job_id}/{format}")
+def download_transcript(job_id: str, format: str):
+    """Download da transcrição em TXT, JSON ou SRT"""
+    if format not in ["txt", "json", "srt"]:
+        raise HTTPException(status_code=400, detail="Formato inválido. Use txt, json ou srt.")
+    
+    file_path = service.get_download_file(job_id, format)
+    if not file_path or not file_path.exists():
+        raise HTTPException(status_code=404, detail="Arquivo não encontrado.")
+    
+    return FileResponse(
+        path=file_path,
+        filename=f"{job_id}.{format}",
+        media_type="application/octet-stream"
+    )

@@ -4,8 +4,14 @@ const statusText = document.getElementById("statusText");
 const videoPlayer = document.getElementById("videoPlayer");
 const transcriptList = document.getElementById("transcriptList");
 const searchInput = document.getElementById("searchInput");
+const diarizationCheck = document.getElementById("diarizationCheck");
+const downloadButtons = document.getElementById("downloadButtons");
+const downloadTxt = document.getElementById("downloadTxt");
+const downloadJson = document.getElementById("downloadJson");
+const downloadSrt = document.getElementById("downloadSrt");
 
 let segmentsCache = [];
+let currentJobId = null;
 
 function formatTime(seconds) {
     const total = Math.floor(seconds);
@@ -68,9 +74,11 @@ function formatTime(seconds) {
 
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("enable_diarization", diarizationCheck.checked);
 
     statusText.textContent = "Enviando e transcrevendo...";
     uploadBtn.disabled = true;
+    downloadButtons.style.display = "none";
 
     try {
         const response = await fetch("/api/upload", {
@@ -84,10 +92,12 @@ function formatTime(seconds) {
         throw new Error(data.detail || "Erro ao processar arquivo.");
         }
 
+        currentJobId = data.job_id;
         videoPlayer.src = data.video_url;
         segmentsCache = data.segments || [];
         renderSegments(segmentsCache);
 
+        downloadButtons.style.display = "flex";
         statusText.textContent = `Transcrição concluída. ${segmentsCache.length} trechos carregados.`;
     } catch (error) {
         statusText.textContent = `Erro: ${error.message}`;
@@ -95,7 +105,26 @@ function formatTime(seconds) {
     } finally {
         uploadBtn.disabled = false;
     }
-    });
+   
+
+// Botões de download
+downloadTxt.addEventListener("click", () => {
+    if (currentJobId) {
+        window.location.href = `/api/download/${currentJobId}/txt`;
+    }
+});
+
+downloadJson.addEventListener("click", () => {
+    if (currentJobId) {
+        window.location.href = `/api/download/${currentJobId}/json`;
+    }
+});
+
+downloadSrt.addEventListener("click", () => {
+    if (currentJobId) {
+        window.location.href = `/api/download/${currentJobId}/srt`;
+    }
+}); });
 
     searchInput.addEventListener("input", (event) => {
     renderSegments(segmentsCache, event.target.value);

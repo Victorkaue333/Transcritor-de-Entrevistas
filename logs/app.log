@@ -14,3 +14,11 @@ FileNotFoundError: Arquivo não encontrado: input\entrevista.mp4
 2026-03-10 12:25:33 | INFO | whisper_transcriber | Arquivo JSON salvo em: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\output\entrevista.json
 2026-03-10 12:25:33 | INFO | whisper_transcriber | Arquivo SRT salvo em: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\output\entrevista.srt
 2026-03-10 12:25:33 | INFO | whisper_transcriber | Processamento finalizado com sucesso.
+2026-03-10 14:19:50 | INFO | whisper_transcriber | Iniciando transcrição para job_id: 34a479e4
+2026-03-10 14:19:50 | INFO | whisper_transcriber | Carregando modelo Whisper: base
+2026-03-10 14:19:51 | INFO | whisper_transcriber | Iniciando transcrição do arquivo: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\input\34a479e4_entrevista.mp4
+2026-03-10 14:26:00 | INFO | whisper_transcriber | Transcrição concluída com sucesso.
+2026-03-10 14:26:00 | INFO | whisper_transcriber | Transcrição concluída para job_id: 34a479e4
+2026-03-10 14:31:52 | INFO | whisper_transcriber | Iniciando transcrição para job_id: 78d7134a
+2026-03-10 14:31:52 | INFO | whisper_transcriber | Carregando modelo Whisper: base
+2026-03-10 14:31:52 | INFO | whisper_transcriber | Iniciando transcrição do arquivo: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\input\78d7134a_entrevista.mp4

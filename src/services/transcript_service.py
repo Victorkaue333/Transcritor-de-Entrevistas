@@ -6,6 +6,7 @@ import uuid
 from pathlib import Path
 from typing import Any
 
+from src.formatter import format_segments_to_srt, format_segments_to_txt
 from src.logger import setup_logger
 from src.transcriber import transcribe_file
 
@@ -49,10 +50,19 @@ class TranscriptService:
             "media_url": f"/frontend/media/{media_filename}",
         }
 
-    def process_video(self, source_file_path: Path, original_filename: str) -> dict[str, Any]:
+    def process_video(self, source_file_path: Path, original_filename: str, enable_diarization: bool = False) -> dict[str, Any]:
         saved = self.save_upload(source_file_path, original_filename)
 
         raw_result = self._run_existing_transcriber(saved["input_path"], saved["job_id"])
+        
+        # Se diarization estiver habilitado, aplica identificação de speakers
+        if enable_diarization:
+            try:
+                self.logger.info(f"Aplicando diarization para job_id: {saved['job_id']}")
+                raw_result = self._apply_diarization(saved["input_path"], raw_result)
+            except Exception as e:
+                self.logger.warning(f"Falha ao aplicar diarization: {e}. Continuando sem identificação de speakers.")
+        
         normalized_segments = self._normalize_segments(raw_result)
 
         result_payload = {
@@ -61,9 +71,13 @@ class TranscriptService:
             "segments": normalized_segments,
         }
 
+        # Salva JSON
         output_json = self.output_dir / f"{saved['job_id']}_segments.json"
         with output_json.open("w", encoding="utf-8") as f:
             json.dump(result_payload, f, ensure_ascii=False, indent=2)
+
+        # Gera arquivos TXT e SRT para download
+        self._generate_download_files(saved["job_id"], normalized_segments)
 
         return result_payload
 
@@ -98,6 +112,83 @@ class TranscriptService:
         except Exception as e:
             self.logger.error(f"Erro ao transcrever arquivo {input_video_path}: {e}")
             raise
+
+    def _apply_diarization(self, audio_path: Path, whisper_result: Any) -> Any:
+        """
+        Aplica speaker diarization usando pyannote.audio.
+        Requer: pip install pyannote.audio
+        E um token do HuggingFace com aceite dos termos em:
+        https://huggingface.co/pyannote/speaker-diarization-3.1
+        """
+        try:
+            from pyannote.audio import Pipeline
+            import torch
+            
+            # Carrega o pipeline de diarization
+            # NOTA: Na primeira vez, você precisa aceitar os termos em huggingface.co
+            # e usar seu token: Pipeline.from_pretrained("pyannote/speaker-diarization-3.1", use_auth_token="YOUR_TOKEN")
+            pipeline = Pipeline.from_pretrained(
+                "pyannote/speaker-diarization-3.1",
+                use_auth_token=True  # Usa o token do HF_TOKEN environment variable
+            )
+            
+            # Aplica diarization
+            diarization = pipeline(str(audio_path))
+            
+            # Mapeia speakers para os segmentos do Whisper
+            segments = whisper_result.get("segments", [])
+            
+            for segment in segments:
+                start_time = segment.get("start", 0.0)
+                end_time = segment.get("end", 0.0)
+                mid_time = (start_time + end_time) / 2
+                
+                # Encontra o speaker no tempo médio do segmento
+                speaker_label = None
+                for turn, _, speaker in diarization.itertracks(yield_label=True):
+                    if turn.start <= mid_time <= turn.end:
+                        speaker_label = speaker
+                        break
+                
+                segment["speaker"] = speaker_label if speaker_label else "Desconhecido"
+            
+            whisper_result["segments"] = segments
+            return whisper_result
+            
+        except ImportError:
+            self.logger.warning("pyannote.audio não instalado. Execute: pip install pyannote.audio")
+            return whisper_result
+        except Exception as e:
+            self.logger.error(f"Erro ao aplicar diarization: {e}")
+            return whisper_result
+
+    def _generate_download_files(self, job_id: str, segments: list[dict[str, Any]]) -> None:
+        """Gera arquivos TXT e SRT para download"""
+        try:
+            # Gera TXT
+            txt_content = format_segments_to_txt(segments, metadata={})
+            txt_path = self.output_dir / f"{job_id}.txt"
+            with txt_path.open("w", encoding="utf-8") as f:
+                f.write(txt_content)
+            
+            # Gera SRT
+            srt_content = format_segments_to_srt(segments)
+            srt_path = self.output_dir / f"{job_id}.srt"
+            with srt_path.open("w", encoding="utf-8") as f:
+                f.write(srt_content)
+            
+            self.logger.info(f"Arquivos de download gerados para job_id: {job_id}")
+        except Exception as e:
+            self.logger.error(f"Erro ao gerar arquivos de download: {e}")
+
+    def get_download_file(self, job_id: str, format: str) -> Path | None:
+        """Retorna o caminho do arquivo de download no formato especificado"""
+        if format == "json":
+            file_path = self.output_dir / f"{job_id}_segments.json"
+        else:
+            file_path = self.output_dir / f"{job_id}.{format}"
+        
+        return file_path if file_path.exists() else None
 
     def _normalize_segments(self, raw_result: Any) -> list[dict[str, Any]]:
         """

@@ -6,3 +6,8 @@ fastapi
 uvicorn
 python-multipart
 jinja2
+
+# Opcional - Para identificação de speakers (diarization)
+# pyannote.audio
+# Após instalar, precisa aceitar termos em: https://huggingface.co/pyannote/speaker-diarization-3.1
+# E configurar token: huggingface-cli login
