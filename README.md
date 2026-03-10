@@ -249,12 +249,6 @@ brew install ffmpeg
 uvicorn src.api:app --reload
 ```
 
-ou
-
-```bash
-python main.py web
-```
-
 ### 6. Acesse a aplicação
 
 Abra o navegador e acesse:
