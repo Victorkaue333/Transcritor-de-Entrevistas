@@ -54,7 +54,7 @@ O projeto segue uma arquitetura cliente-servidor com separação clara de respon
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                       FRONTEND (Web)                        │
-│  HTML + CSS + JavaScript → Interface de usuário            │
+│  HTML + CSS + JavaScript → Interface de usuário             │
 │  - Upload de arquivos                                       │
 │  - Player de vídeo                                          │
 │  - Lista de segmentos                                       │
