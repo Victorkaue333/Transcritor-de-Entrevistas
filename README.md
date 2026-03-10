@@ -125,7 +125,6 @@ Com relação às tecnologias, o projeto é construído com:
 - **HTML5** - Estrutura
 - **CSS3** - Estilização moderna com dark theme
 - **JavaScript (Vanilla)** - Lógica de interação
-- **Fetch API** - Comunicação com backend
 
 ### Ferramentas de desenvolvimento
 
