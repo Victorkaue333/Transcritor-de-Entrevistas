@@ -94,7 +94,7 @@ O projeto segue uma arquitetura cliente-servidor com separação clara de respon
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Fluxo de processamento
+### Fluxo de processamento é um pipeline sequencial em que cada etapa depende da anterior, como:
 
 1. **Upload**: Usuário envia vídeo/áudio via interface web
 2. **Armazenamento**: Arquivo salvo em `input/` e copiado para `frontend/media/`
