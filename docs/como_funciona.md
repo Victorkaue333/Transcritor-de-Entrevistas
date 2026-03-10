@@ -35,6 +35,7 @@ O fluxo do usuário é projetado para ser simples e intuitivo, mesmo para quem n
 ### Fase 1: Upload e Preparação
 
 **O que acontece:**
+
 1. Frontend envia arquivo via FormData (multipart/form-data)
 2. Backend gera um **job_id único** usando UUID
 3. Arquivo salvo em duas localizações:
@@ -42,11 +43,13 @@ O fluxo do usuário é projetado para ser simples e intuitivo, mesmo para quem n
    - `frontend/media/{job_id}.{extensão}` → cópia para o player
 
 **Código responsável:**
+
 - Frontend: `app.js` → função no evento `uploadBtn.addEventListener("click")`
 - Backend: `src/api.py` → endpoint `POST /api/upload`
 - Service: `src/services/transcript_service.py` → método `process_video()`
 
 **Exemplo de job_id:**
+
 ```
 Original: minha_entrevista.mp4
 Job ID gerado: a7f3c2e1
