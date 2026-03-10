@@ -110,7 +110,7 @@ O projeto segue uma arquitetura cliente-servidor com separação clara de respon
 
 Com relação às tecnologias, o projeto é construído com:
 
-### Backend
+### Backend:
 
 - **Python 3.11+** - Linguagem principal
 - **FastAPI** - Framework web moderno e assíncrono
@@ -120,13 +120,13 @@ Com relação às tecnologias, o projeto é construído com:
 - **PyTorch** - Framework de deep learning (dependência do Whisper)
 - **FFmpeg** - Processamento de áudio e vídeo
 
-### Frontend
+### Frontend:
 
 - **HTML5** - Estrutura
 - **CSS3** - Estilização moderna com dark theme
 - **JavaScript (Vanilla)** - Lógica de interação
 
-### Ferramentas de desenvolvimento
+### Ferramentas de desenvolvimento:
 
 - **Python Logging** - Sistema de logs estruturado
 - **Python Multipart** - Upload de arquivos
@@ -134,7 +134,7 @@ Com relação às tecnologias, o projeto é construído com:
 
 ---
 
-## 📁 Estrutura de diretórios
+## 📁 Estrutura de diretórios:
 
 ```
 whisper-interview-transcriber/
