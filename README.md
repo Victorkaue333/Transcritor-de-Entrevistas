@@ -216,10 +216,12 @@ pip install -r requirements.txt
 ### 4. Instale o FFmpeg (se ainda não tiver)
 
 **Windows:**
+
 1. Baixe o FFmpeg em [ffmpeg.org](https://ffmpeg.org/download.html)
 2. Extraia e adicione ao PATH do sistema
 
 **Linux (Ubuntu/Debian):**
+
 ```bash
 sudo apt update
 sudo apt install ffmpeg
