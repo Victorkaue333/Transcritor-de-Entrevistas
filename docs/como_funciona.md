@@ -96,6 +96,7 @@ Salvo como:
 ```
 
 **Tempo de processamento:**
+
 - Vídeo de 10 minutos → ~2-5 minutos de processamento
 - Depende do hardware (GPU acelera muito)
 - Modelo small: balanceado entre velocidade e precisão
@@ -105,6 +106,7 @@ Salvo como:
 ### Fase 3: Identificação de Speakers (Opcional)
 
 **O que acontece:**
+
 1. Se diarization estiver habilitado, usa PyAnnote
 2. Analisa frequências de voz no áudio
 3. Cria clusters de vozes similares
@@ -112,6 +114,7 @@ Salvo como:
 5. Mapeia timestamps do Whisper para speakers
 
 **Código responsável:**
+
 - Service: `src/services/transcript_service.py` → método `_apply_diarization()`
 
 **Antes da diarização:**
