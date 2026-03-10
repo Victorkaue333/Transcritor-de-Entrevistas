@@ -345,6 +345,7 @@ Exibe apenas segmentos relevantes
 - **ERROR** (vermelho): Erros que precisam atenção
 
 **Exemplo de logs durante upload:**
+
 ```
 [16:23:45] [INFO] Arquivo selecionado: entrevista.mp4 (45.2 MB)
 [16:23:46] [INFO] Enviando arquivo para o servidor...
@@ -357,10 +358,12 @@ Exibe apenas segmentos relevantes
 ### Logs do Backend (Python)
 
 **Armazenamento:**
+
 - Diretório: `logs/`
 - Formato: texto com timestamps
 
 **Código responsável:**
+
 - Core: `src/logger.py` → classe `Logger`
 
 ---
@@ -378,6 +381,7 @@ Exibe apenas segmentos relevantes
 | large  | 2.9 GB  | Muito lenta | ~98% | Máxima qualidade |
 
 **Como alterar:**
+
 - Arquivo: `src/config.py`
 - Variável: `DEFAULT_MODEL = "small"`
 
@@ -454,11 +458,13 @@ Exibe apenas segmentos relevantes
 ### Frontend
 
 **Erros capturados:**
+
 - Arquivo não selecionado
 - Erro de rede durante upload
 - Resposta inválida da API
 
 **Como trata:**
+
 ```javascript
 try {
   const response = await fetch("/api/upload", {...});
@@ -472,12 +478,14 @@ try {
 ### Backend
 
 **Erros capturados:**
+
 - Arquivo corrompido
 - Modelo não encontrado
 - Erro durante transcrição
 - Disco cheio
 
 **Como trata:**
+
 ```python
 try:
     result = transcribe_file(file_path)
@@ -493,24 +501,29 @@ except Exception as e:
 ### Entrada (Upload)
 
 **Vídeo:**
+
 - `.mp4`, `.avi`, `.mov`, `.mkv`, `.webm`
 
 **Áudio:**
+
 - `.mp3`, `.wav`, `.m4a`, `.flac`, `.ogg`
 
 ### Saída (Download)
 
 **TXT:**
+
 - Transcrição formatada para leitura humana
 - Inclui timestamps e speakers
 - Encoding: UTF-8
 
 **JSON:**
+
 - Dados brutos estruturados
 - Fácil de processar programaticamente
 - Inclui todos os metadados
 
 **SRT:**
+
 - Formato padrão de legendas
 - Compatível com editores de vídeo
 - Numeração sequencial automática
