@@ -189,6 +189,7 @@ Estou bem, obrigado por perguntar.
 ```
 
 **Formato JSON:**
+
 ```json
 [
   {
