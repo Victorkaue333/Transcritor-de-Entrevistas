@@ -150,14 +150,17 @@ Salvo como:
 ### Fase 4: Geração de Arquivos de Download
 
 **O que acontece:**
+
 1. Cria `{job_id}_segments.json` com dados completos
 2. Gera `{job_id}.txt` formatado para leitura
 3. Gera `{job_id}.srt` para uso em editores de vídeo
 
 **Código responsável:**
+
 - Service: `src/services/transcript_service.py` → método `_generate_download_files()`
 
 **Formato TXT:**
+
 ```
 [00:00 --> 00:03] SPEAKER_00
 Olá, meu nome é João.
@@ -170,6 +173,7 @@ Estou bem, obrigado por perguntar.
 ```
 
 **Formato SRT (legendas):**
+
 ```
 1
 00:00:00,000 --> 00:00:03,500
