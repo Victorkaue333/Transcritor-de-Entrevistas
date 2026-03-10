@@ -108,6 +108,8 @@ O projeto segue uma arquitetura cliente-servidor com separação clara de respon
 
 ## 🛠️ Tecnologias utilizadas
 
+Com relação às tecnologias, o projeto é construído com:
+
 ### Backend
 
 - **Python 3.11+** - Linguagem principal
