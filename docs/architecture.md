@@ -114,6 +114,8 @@ O **Whisper Interview Transcriber** é uma aplicação web full-stack que proces
 
 ### 1️⃣ Upload e Preparação
 
+No processo de upload, o usuário seleciona um arquivo e escolhe se deseja habilitar a diarização. O frontend envia uma requisição POST para a API, que gera um `job_id` único e salva o arquivo na pasta `input/`. Em seguida, o arquivo é copiado para `frontend/media/` para ser acessível pelo player.
+
 ```
 Usuário seleciona arquivo
         ↓
