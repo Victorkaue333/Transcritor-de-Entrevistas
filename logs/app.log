@@ -1,0 +1,6 @@
+2026-03-10 11:49:47 | ERROR | whisper_transcriber | Arquivo não encontrado: input\entrevista.mp4
+2026-03-10 11:49:47 | ERROR | whisper_transcriber | Erro durante a execução: Arquivo não encontrado: input\entrevista.mp4
+Traceback (most recent call last):
+  File "C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\main.py", line 27, in main
+    raise FileNotFoundError(f"Arquivo não encontrado: {input_file}")
+FileNotFoundError: Arquivo não encontrado: input\entrevista.mp4
