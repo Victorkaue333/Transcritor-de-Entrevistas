@@ -42,3 +42,17 @@ FileNotFoundError: Arquivo não encontrado: input\entrevista.mp4
 2026-03-10 15:08:21 | INFO | whisper_transcriber | [475b526e] Idioma: Português (pt)
 2026-03-10 15:08:21 | INFO | whisper_transcriber | Carregando modelo Whisper: medium
 2026-03-10 15:08:32 | INFO | whisper_transcriber | Iniciando transcrição do arquivo: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\input\475b526e_entrevista.mp4
+2026-03-10 15:43:58 | INFO | whisper_transcriber | Transcrição concluída com sucesso.
+2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] ✅ Transcrição Whisper concluída: 672 segmentos detectados
+2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] Transcrição Whisper concluída
+2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] Fase 3: Normalizando segmentos
+2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] 672 segmentos normalizados
+2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] Fase 4: Salvando resultados
+2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] JSON salvo: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\output\475b526e_segments.json
+2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] Fase 5: Gerando arquivos de download
+2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] Gerando arquivo TXT...
+2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] ✅ TXT gerado: 475b526e.txt
+2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] Gerando arquivo SRT...
+2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] ✅ SRT gerado: 475b526e.srt
+2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] Arquivos de download prontos (TXT, JSON, SRT)
+2026-03-10 15:43:58 | INFO | whisper_transcriber | [475b526e] ✅ Processamento completo finalizado com sucesso!

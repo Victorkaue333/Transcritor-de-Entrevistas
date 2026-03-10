@@ -179,5 +179,38 @@ searchInput.addEventListener("input", (event) => {
     renderSegments(segmentsCache, event.target.value);
 });
 
+// Sincronização automática do vídeo com os segmentos
+videoPlayer.addEventListener("timeupdate", () => {
+    const currentTime = videoPlayer.currentTime;
+    
+    // Encontra o segmento ativo baseado no tempo atual
+    const activeSegmentIndex = segmentsCache.findIndex((segment) => {
+        return currentTime >= segment.start && currentTime <= segment.end;
+    });
+    
+    if (activeSegmentIndex !== -1) {
+        // Remove a classe active de todos os segmentos
+        document.querySelectorAll(".segment").forEach((el) => el.classList.remove("active"));
+        
+        // Adiciona a classe active ao segmento atual
+        const activeSegment = document.querySelector(`.segment[data-index="${activeSegmentIndex}"]`);
+        if (activeSegment) {
+            activeSegment.classList.add("active");
+            
+            // Scroll automático para o segmento ativo (com offset para centralizar)
+            const transcriptContainer = transcriptList;
+            const segmentTop = activeSegment.offsetTop;
+            const containerHeight = transcriptContainer.clientHeight;
+            const segmentHeight = activeSegment.clientHeight;
+            
+            // Centraliza o segmento na tela
+            transcriptContainer.scrollTo({
+                top: segmentTop - (containerHeight / 2) + (segmentHeight / 2),
+                behavior: "smooth"
+            });
+        }
+    }
+});
+
 // Log inicial
 addLog("info", "Sistema iniciado. Aguardando upload de arquivo...");
