@@ -206,6 +206,7 @@ Estou bem, obrigado por perguntar.
 ### Fase 5: Retorno ao Frontend
 
 **O que acontece:**
+
 1. Backend envia resposta JSON com:
    - job_id
    - URL do vídeo
@@ -214,10 +215,12 @@ Estou bem, obrigado por perguntar.
 3. Dados salvos no localStorage
 
 **Código responsável:**
+
 - Backend: `src/api.py` → retorno do endpoint `/api/upload`
 - Frontend: `app.js` → função `renderSegments()`
 
 **Response da API:**
+
 ```json
 {
   "job_id": "a7f3c2e1",
