@@ -1,6 +1,6 @@
 # Whisper Interview Transcriber
 
-Automação em Python para transcrever entrevistas a partir de arquivos de áudio ou vídeo, gerando uma transcrição completa com timestamps, segmentação por trechos e exportação em múltiplos formatos.
+O principal objetivo deste projeto é automatizar a transcrição de entrevistas a partir de arquivos de áudio ou vídeo, gerando uma transcrição completa com timestamps, segmentação por trechos e exportação em múltiplos formatos.
 
 ## Objetivo
 
