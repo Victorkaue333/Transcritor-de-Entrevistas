@@ -74,11 +74,11 @@ O projeto segue uma arquitetura cliente-servidor com separação clara de respon
 │                                                             │
 │  ┌─────────────────┐         ┌──────────────────┐           │
 │  │ TranscriptService│──────▶│ Whisper Model    │            │
-│  │                  │        │ (OpenAI)         │            │
+│  │                  │        │ (OpenAI)         │           │
 │  └────────┬─────────┘        └──────────────────┘           │
-│           │                                                  │
-│           │ (opcional)                                       │
-│           ▼                                                  │
+│           │                                                 │
+│           │ (opcional)                                      │
+│           ▼                                                 │
 │  ┌──────────────────┐                                       │
 │  │ PyAnnote Audio   │                                       │
 │  │ (Diarization)    │                                       │
