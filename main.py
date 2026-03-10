@@ -67,7 +67,17 @@ def main():
     except Exception as exc:
         logger.exception("Erro durante a execução: %s", exc)
         sys.exit(1)
+        
+def run_cli():
+    print("Modo CLI ainda ativo.")
+    # aqui continua sua lógica atual de terminal
 
+def run_web():
+    import uvicorn
+    uvicorn.run("src.api:app", host="127.0.0.1", port=8000, reload=True)
 
-if __name__ == "__main__":
-    main()
+    if __name__ == "__main__":
+        if len(sys.argv) > 1 and sys.argv[1] == "web":
+            run_web()
+        else:
+            run_cli()
