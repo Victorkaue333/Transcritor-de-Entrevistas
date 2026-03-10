@@ -22,7 +22,8 @@ Uma aplicação full-stack que utiliza o modelo Whisper da OpenAI para transcrev
 
 ## 🎯 Problema que o projeto resolve
 
-A transcrição manual de entrevistas, reuniões e gravações acadêmicas é um processo extremamente demorado e repetitivo. Pesquisadores, jornalistas e profissionais gastam horas transcrevendo áudio manualmente, além de enfrentar dificuldades para:
+O problema foi vivenciado por mim mesmo durante a tentativa de transcrição manual de entrevistas para um projeto acadêmico. O processo era extremamente demorado, especialmente para gravações longas, e havia dificuldades para localizar trechos específicos, identificar quem estava falando de acordo com a voz e também para exportar o conteúdo em formatos compatíveis com outras ferramentas de análise.
+Esse sistema foi criado para resolver esses problemas. Pesquisadores, jornalistas e profissionais gastam horas transcrevendo áudio manualmente, além de enfrentar dificuldades para:
 
 - **Localizar trechos específicos** em gravações longas
 - **Identificar quem está falando** em conversas com múltiplos participantes
