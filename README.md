@@ -337,6 +337,7 @@ http://127.0.0.1:8000
 ## 🎯 Possíveis melhorias / Roadmap
 
 ### Curto prazo
+
 - ✅ ~~Interface web interativa~~ (implementado)
 - ✅ ~~Botões de download (TXT, JSON, SRT)~~ (implementado)
 - ✅ ~~Identificação opcional de speakers~~ (implementado)
@@ -344,12 +345,6 @@ http://127.0.0.1:8000
 - [ ] Indicador de progresso durante transcrição
 - [ ] Histórico de transcrições anteriores
 
-### Médio prazo
-- [ ] Edição manual de segmentos na interface
-- [ ] Exportação em DOCX com formatação
-- [ ] Suporte a legendas bilíngues (tradução automática)
-- [ ] Modo batch para processar múltiplos arquivos
-- [ ] Detecção automática de idioma
 
 ## 👨‍💻 Autor
 
