@@ -1,4 +1,4 @@
-# Como Funciona o Sistema
+# Como Funciona o Sistema?:
 
 ## 📖 Visão Geral
 
