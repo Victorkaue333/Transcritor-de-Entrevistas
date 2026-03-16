@@ -6,5 +6,5 @@ INPUT_DIR = BASE_DIR / "input"
 OUTPUT_DIR = BASE_DIR / "output"
 LOG_DIR = BASE_DIR / "logs"
 
-DEFAULT_MODEL = "medium"
+DEFAULT_MODEL = "large"
 DEFAULT_LANGUAGE = "pt"
