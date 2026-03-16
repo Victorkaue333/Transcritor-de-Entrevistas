@@ -124,6 +124,8 @@ O backend é desenvolvido utilizando o framework **FastAPI**, que é conhecido p
 
 ### Frontend:
 
+Já o frontend é construído com tecnologias web tradicionais, utilizando HTML5 para a estrutura da página, CSS3 para a estilização (incluindo um tema escuro) e JavaScript vanilla para a lógica de interação. Ele se comunica com o backend através de requisições HTTP para enviar arquivos, receber transcrições e controlar a reprodução do vídeo.
+
 - **HTML5** - Estrutura
 - **CSS3** - Estilização moderna com dark theme
 - **JavaScript (Vanilla)** - Lógica de interação
