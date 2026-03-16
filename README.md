@@ -352,10 +352,6 @@ Abaixo estão os principais endpoints da API REST:
 **LinkedIn** - [Victor Alves](https://www.linkedin.com/in/victor-kauê)
 **Portfólio** - [victorkauê](https://victorkaue.netlify.app/)
 
-## 📧 Contato
-
-Para dúvidas ou sugestões, abra uma [issue](https://github.com/Victorkaue333/whisper-interview-transcriber/issues) no GitHub.
-
 ---
 
 **⭐ Se este projeto foi útil para você, considere dar uma estrela no repositório!**
