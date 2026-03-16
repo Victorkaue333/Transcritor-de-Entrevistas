@@ -132,6 +132,8 @@ Já o frontend é construído com tecnologias web tradicionais, utilizando HTML5
 
 ### Ferramentas de desenvolvimento:
 
+As ferramentas utilizadas para o desenvolvimento incluem:
+
 - **Python Logging** - Sistema de logs estruturado
 - **Python Multipart** - Upload de arquivos
 - **JSON** - Formato de troca de dados
