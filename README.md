@@ -194,6 +194,8 @@ Transcritor-de-Entrevistas/
 
 ## 🚀 Como executar o projeto:
 
+Abaixo estão as instruções passo a passo para configurar e rodar o projeto localmente:
+
 ### Pré-requisitos:
 
 Para rodar o projeto localmente, certifique-se de ter:
