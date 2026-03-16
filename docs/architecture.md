@@ -114,6 +114,8 @@ O sistema é dividido em três camadas principais:
 
 ## 🔄 Fluxo de Dados Completo
 
+O fluxo de dados do sistema pode ser dividido em cinco fases principais:
+
 ### 1️⃣ Upload e Preparação
 
 No processo de upload, o usuário seleciona um arquivo e escolhe se deseja habilitar a diarização. O frontend envia uma requisição POST para a API, que gera um `job_id` único e salva o arquivo na pasta `input/`. Em seguida, o arquivo é copiado para `frontend/media/` para ser acessível pelo player.
