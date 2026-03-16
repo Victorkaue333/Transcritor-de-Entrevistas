@@ -1,4 +1,4 @@
-# Transcritor de Entrevistas com Whisper e PyAnnote
+# 💡 Transcritor de Entrevistas com Whisper e PyAnnote
 
 > Sistema web de transcrição automática de áudio e vídeo com navegação por timestamps, identificação de speakers e exportação em múltiplos formatos.
 
