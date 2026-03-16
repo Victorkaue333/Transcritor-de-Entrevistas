@@ -350,6 +350,7 @@ Abaixo estão os principais endpoints da API REST:
 
 **Victor Alves** - [GitHub](https://github.com/Victorkaue333)
 **LinkedIn** - [Victor Alves](https://www.linkedin.com/in/victor-kauê)
+**Portfólio** - [victorkauê](https://victorkaue.netlify.app/)
 
 ## 📧 Contato
 
