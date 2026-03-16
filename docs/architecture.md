@@ -6,7 +6,9 @@ O **Whisper Interview Transcriber** é uma aplicação web full-stack que proces
 
 ---
 
-## 🏗️ Diagrama de Componentes
+## 🏗️ Diagrama de Componentes:
+
+O sistema é dividido em três camadas principais:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
