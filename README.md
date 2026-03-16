@@ -271,6 +271,8 @@ http://127.0.0.1:8000
 
 ## 🔄 Fluxo de funcionamento do sistema:
 
+O fluxo de funcionamento do sistema é o seguinte:
+
 ### Processo completo de transcrição
 
 ```
