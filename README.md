@@ -352,7 +352,3 @@ Aqui estão minhas informações de contato e links para meus perfis profissiona
 **Victor Alves** - [GitHub](https://github.com/Victorkaue333)
 **LinkedIn** - [Victor Alves](https://www.linkedin.com/in/victor-kauê)
 **Portfólio** - [victorkauê](https://victorkaue.netlify.app/)
-
----
-
-**⭐ Se este projeto foi útil para você, considere dar uma estrela no repositório!**
