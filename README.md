@@ -112,6 +112,8 @@ Com relação às tecnologias, o projeto é construído com:
 
 ### Backend:
 
+O backend é desenvolvido utilizando o framework **FastAPI**, que é conhecido por sua alta performance e facilidade de uso. Ele é responsável por gerenciar as rotas da API, processar os uploads de arquivos, interagir com o modelo de transcrição Whisper e, opcionalmente, com a biblioteca PyAnnote para diarization. O backend também lida com a geração dos arquivos de saída (TXT, JSON, SRT) e serve os arquivos estáticos para o frontend.
+
 - **Python 3.11+** - Linguagem principal
 - **FastAPI** - Framework web moderno e assíncrono
 - **Uvicorn** - Servidor ASGI de alta performance
