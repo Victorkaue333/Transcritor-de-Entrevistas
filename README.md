@@ -349,7 +349,7 @@ Abaixo estão os principais endpoints da API REST:
 ## 👨‍💻 Autor:
 
 **Victor Alves** - [GitHub](https://github.com/Victorkaue333)
-
+**LinkedIn** - [Victor Alves](https://www.linkedin.com/in/victor-kauê)
 
 ## 📧 Contato
 
