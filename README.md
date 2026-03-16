@@ -347,6 +347,8 @@ O fluxo de funcionamento do sistema é o seguinte:
 
 ## 👨‍💻 Autor:
 
+Aqui estão minhas informações de contato e links para meus perfis profissionais:
+
 **Victor Alves** - [GitHub](https://github.com/Victorkaue333)
 **LinkedIn** - [Victor Alves](https://www.linkedin.com/in/victor-kauê)
 **Portfólio** - [victorkauê](https://victorkaue.netlify.app/)
