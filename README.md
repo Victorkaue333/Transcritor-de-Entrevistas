@@ -186,7 +186,7 @@ Transcritor-de-Entrevistas/
 
 ---
 
-## 🚀 Como executar o projeto
+## 🚀 Como executar o projeto:
 
 ### Pré-requisitos:
 
@@ -219,7 +219,7 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 3. Instale as dependências
+### 3. Instale as dependências:
 
 ```bash
 pip install -r requirements.txt
@@ -261,7 +261,7 @@ http://127.0.0.1:8000
 
 ---
 
-## 🔄 Fluxo de funcionamento do sistema
+## 🔄 Fluxo de funcionamento do sistema:
 
 ### Processo completo de transcrição
 
