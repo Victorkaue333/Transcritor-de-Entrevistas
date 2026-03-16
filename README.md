@@ -47,7 +47,7 @@ O **Transcritor de Entrevistas com Whisper e PyAnnote** oferece:
 
 ---
 
-## 🏗️ Arquitetura do sistema
+## 🏗️ Arquitetura do sistema:
 
 O projeto segue uma arquitetura cliente-servidor com separação clara de responsabilidades:
 
@@ -106,7 +106,7 @@ O projeto segue uma arquitetura cliente-servidor com separação clara de respon
 
 ---
 
-## 🛠️ Tecnologias utilizadas
+## 🛠️ Tecnologias utilizadas:
 
 Com relação às tecnologias, o projeto é construído com:
 
