@@ -296,7 +296,7 @@ Salva em localStorage para persistência
 
 ## 🛠️ Tecnologias Utilizadas
 
-### Backend
+### Backend:
 
 - **Python 3.11+**
 - **FastAPI**: Framework web assíncrono
@@ -305,7 +305,7 @@ Salva em localStorage para persistência
 - **PyAnnote.audio**: Diarização de speakers (opcional)
 - **Pydantic**: Validação de dados
 
-### Frontend
+### Frontend:
 
 - **HTML5**: Estrutura semântica
 - **CSS3**: Grid, Flexbox, variáveis CSS
@@ -322,7 +322,7 @@ Salva em localStorage para persistência
 ## 📦 Estrutura de Diretórios
 
 ```
-whisper-interview-transcriber/
+Transcritor-de-Entrevistas/
 │
 ├── frontend/                    # Interface web
 │   ├── index.html              # Página principal
