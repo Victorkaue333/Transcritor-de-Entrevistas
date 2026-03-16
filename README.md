@@ -36,7 +36,7 @@ Este projeto automatiza todo esse processo, reduzindo drasticamente o tempo nece
 
 ## 💡 Solução proposta
 
-O **Whisper Interview Transcriber** oferece:
+O **Transcritor de Entrevistas com Whisper e PyAnnote** oferece:
 
 1. **Transcrição automática**: Utiliza o modelo Whisper (OpenAI) para converter áudio em texto com alta precisão
 2. **Interface web interativa**: Player de vídeo sincronizado com segmentos de texto clicáveis
