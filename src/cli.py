@@ -14,7 +14,7 @@ def parse_args():
 
     parser.add_argument(
         "--model",
-        default="medium",
+        default="large",
         help="Modelo do Whisper: tiny, base, small, medium, large"
     )
 

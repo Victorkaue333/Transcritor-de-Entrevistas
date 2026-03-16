@@ -114,15 +114,15 @@ class TranscriptService:
         Retorna o resultado com os segmentos transcritos.
         """
         try:
-            self.logger.info(f"[{job_id}] Carregando modelo Whisper: medium")
+            self.logger.info(f"[{job_id}] Carregando modelo Whisper: large")
             self.logger.info(f"[{job_id}] Arquivo de entrada: {input_video_path.name}")
             self.logger.info(f"[{job_id}] Idioma: Português (pt)")
             
-            # Usando modelo medium (balanceado - alta precisão e tempo razoável)
+            # Usando modelo large (melhor precisão e qualidade)
             # Opções: "tiny" (rápido) | "base" | "small" | "medium" | "large" (mais preciso)
             result = transcribe_file(
                 file_path=str(input_video_path),
-                model_name="medium",
+                model_name="large",
                 language="pt",
                 logger=self.logger
             )

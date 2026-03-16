@@ -92,3 +92,14 @@ FileNotFoundError: Arquivo não encontrado: input\entrevista.mp4
 2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] ✅ SRT gerado: a26a0e55.srt
 2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] Arquivos de download prontos (TXT, JSON, SRT)
 2026-03-10 16:09:40 | INFO | whisper_transcriber | [a26a0e55] ✅ Processamento completo finalizado com sucesso!
+2026-03-16 11:08:45 | INFO | whisper_transcriber | [7b16645e] Iniciando salvamento de arquivo: entrevista.mp4
+2026-03-16 11:08:45 | INFO | whisper_transcriber | [7b16645e] Arquivo salvo em: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\input\7b16645e_entrevista.mp4
+2026-03-16 11:08:45 | INFO | whisper_transcriber | [7b16645e] Cópia criada para frontend: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\frontend\media\7b16645e_entrevista.mp4
+2026-03-16 11:08:45 | INFO | whisper_transcriber | [7b16645e] Iniciando processamento completo
+2026-03-16 11:08:45 | INFO | whisper_transcriber | [7b16645e] Diarization: Desabilitado
+2026-03-16 11:08:45 | INFO | whisper_transcriber | [7b16645e] Fase 1: Transcrição com Whisper
+2026-03-16 11:08:45 | INFO | whisper_transcriber | [7b16645e] Carregando modelo Whisper: medium
+2026-03-16 11:08:45 | INFO | whisper_transcriber | [7b16645e] Arquivo de entrada: 7b16645e_entrevista.mp4
+2026-03-16 11:08:45 | INFO | whisper_transcriber | [7b16645e] Idioma: Português (pt)
+2026-03-16 11:08:45 | INFO | whisper_transcriber | Carregando modelo Whisper: medium
+2026-03-16 11:08:56 | INFO | whisper_transcriber | Iniciando transcrição do arquivo: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\input\7b16645e_entrevista.mp4
