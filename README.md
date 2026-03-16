@@ -136,6 +136,8 @@ Com relação às tecnologias, o projeto é construído com:
 
 ## 📁 Estrutura de diretórios:
 
+A organização do projeto é estruturada para facilitar a manutenção e escalabilidade, com separação clara entre frontend, backend, serviços de processamento e dados:
+
 ```
 whisper-interview-transcriber/
 │
