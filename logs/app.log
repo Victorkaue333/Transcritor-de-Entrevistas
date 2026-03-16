@@ -1,0 +1,28 @@
+2026-03-16 12:59:28 | INFO | whisper_transcriber | [2fa93c59] Iniciando salvamento de arquivo: entrevista.mp4
+2026-03-16 12:59:28 | INFO | whisper_transcriber | [2fa93c59] Arquivo salvo em: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\input\2fa93c59_entrevista.mp4
+2026-03-16 12:59:28 | INFO | whisper_transcriber | [2fa93c59] Cópia criada para frontend: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\frontend\media\2fa93c59_entrevista.mp4
+2026-03-16 12:59:28 | INFO | whisper_transcriber | [2fa93c59] Iniciando processamento completo
+2026-03-16 12:59:28 | INFO | whisper_transcriber | [2fa93c59] Diarization: Habilitado
+2026-03-16 12:59:28 | INFO | whisper_transcriber | [2fa93c59] Fase 1: Transcrição com Whisper
+2026-03-16 12:59:28 | INFO | whisper_transcriber | [2fa93c59] Carregando modelo Whisper: large
+2026-03-16 12:59:28 | INFO | whisper_transcriber | [2fa93c59] Arquivo de entrada: 2fa93c59_entrevista.mp4
+2026-03-16 12:59:28 | INFO | whisper_transcriber | [2fa93c59] Idioma: Português (pt)
+2026-03-16 12:59:28 | INFO | whisper_transcriber | Carregando modelo Whisper: large
+2026-03-16 13:00:56 | INFO | whisper_transcriber | Iniciando transcrição do arquivo: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\input\2fa93c59_entrevista.mp4
+2026-03-16 14:40:12 | INFO | whisper_transcriber | Transcrição concluída com sucesso.
+2026-03-16 14:40:12 | INFO | whisper_transcriber | [2fa93c59] ✅ Transcrição Whisper concluída: 1236 segmentos detectados
+2026-03-16 14:40:12 | INFO | whisper_transcriber | [2fa93c59] Transcrição Whisper concluída
+2026-03-16 14:40:12 | INFO | whisper_transcriber | [2fa93c59] Fase 2: Aplicando diarization (identificação de speakers)
+2026-03-16 14:40:28 | ERROR | whisper_transcriber | Erro ao aplicar diarization: Pipeline.from_pretrained() got an unexpected keyword argument 'use_auth_token'
+2026-03-16 14:40:28 | INFO | whisper_transcriber | [2fa93c59] Diarization concluída
+2026-03-16 14:40:28 | INFO | whisper_transcriber | [2fa93c59] Fase 3: Normalizando segmentos
+2026-03-16 14:40:28 | INFO | whisper_transcriber | [2fa93c59] 1236 segmentos normalizados
+2026-03-16 14:40:28 | INFO | whisper_transcriber | [2fa93c59] Fase 4: Salvando resultados
+2026-03-16 14:40:28 | INFO | whisper_transcriber | [2fa93c59] JSON salvo: C:\Users\Victor Alves\Documents\GitHub\whisper-interview-transcriber\output\2fa93c59_segments.json
+2026-03-16 14:40:28 | INFO | whisper_transcriber | [2fa93c59] Fase 5: Gerando arquivos de download
+2026-03-16 14:40:28 | INFO | whisper_transcriber | [2fa93c59] Gerando arquivo TXT...
+2026-03-16 14:40:28 | INFO | whisper_transcriber | [2fa93c59] ✅ TXT gerado: 2fa93c59.txt
+2026-03-16 14:40:28 | INFO | whisper_transcriber | [2fa93c59] Gerando arquivo SRT...
+2026-03-16 14:40:28 | INFO | whisper_transcriber | [2fa93c59] ✅ SRT gerado: 2fa93c59.srt
+2026-03-16 14:40:28 | INFO | whisper_transcriber | [2fa93c59] Arquivos de download prontos (TXT, JSON, SRT)
+2026-03-16 14:40:28 | INFO | whisper_transcriber | [2fa93c59] ✅ Processamento completo finalizado com sucesso!
