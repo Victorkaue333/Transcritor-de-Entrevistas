@@ -333,7 +333,7 @@ http://127.0.0.1:8000
     Usuário clica download → baixa TXT/JSON/SRT
 ```
 
-### API Endpoints
+### API Endpoints:
 
 Abaixo estão os principais endpoints da API REST:
 
@@ -346,9 +346,10 @@ Abaixo estão os principais endpoints da API REST:
 
 ---
 
-## 👨‍💻 Autor
+## 👨‍💻 Autor:
 
 **Victor Alves** - [GitHub](https://github.com/Victorkaue333)
+
 
 ## 📧 Contato
 
